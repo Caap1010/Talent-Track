@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Statistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <a href="index.html">Home</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="freelance.html">Freelance</a>
+            <a href="auth.html">Login</a>
+            <a href="register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN -->
+    <main class="tt-stats-page">
+        <h1 class="tt-stats-title">Your Career Performance Overview</h1>
+        <p class="tt-stats-subtitle">Performance, insights &amp; trends tracked across TalentTrack.</p>
+
+        <section class="tt-grid tt-grid-3">
+            <div class="tt-card tt-card-chart">
+                <h3>Application Success Rate</h3>
+                <canvas id="successRateChart"></canvas>
+            </div>
+            <div class="tt-card tt-card-chart">
+                <h3>Interview Performance</h3>
+                <canvas id="interviewScoreChart"></canvas>
+            </div>
+            <div class="tt-card tt-card-chart">
+                <h3>Profile Views Over Time</h3>
+                <canvas id="viewsChart"></canvas>
+            </div>
+        </section>
+
+        <section class="tt-ai-insights">
+            <h2>AI Career Insights</h2>
+            <div class="tt-grid tt-grid-3">
+                <div class="tt-card tt-ai-card">
+                    <h3>Skill Recommendation</h3>
+                    <p>Boost your success rate by learning <strong>Python &amp; Data Analysis</strong>. 62% of similar
+                        candidates advance faster with this skill.</p>
+                </div>
+                <div class="tt-card tt-ai-card">
+                    <h3>Confidence Score</h3>
+                    <p>Your interview confidence score is <strong>78%</strong>. Improving your “STAR method” answers can
+                        push you above 85%.</p>
+                </div>
+                <div class="tt-card tt-ai-card">
+                    <h3>Recommended Roles</h3>
+                    <p>Top 3 roles you are most likely to succeed in:
+                        <strong>Junior Developer</strong>,
+                        <strong>Data Analyst Intern</strong>,
+                        <strong>Cloud Support Associate</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right">
+            <span aria-label="LinkedIn">🔗</span>
+            <span aria-label="Twitter">🐦</span>
+            <span aria-label="Instagram">📷</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

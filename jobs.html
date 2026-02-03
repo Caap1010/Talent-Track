@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Job Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <a href="index.html">Home</a>
+            <a href="jobs.html" class="active">Jobs</a>
+            <a href="freelance.html">Freelance</a>
+            <a href="auth.html">Login</a>
+            <a href="register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <main class="tt-jobs">
+        <!-- Search -->
+        <section class="tt-jobs-search">
+            <h1>Find your next opportunity</h1>
+            <p class="tt-jobs-subtitle">Search roles by title, skill, location or company. Filter to match your
+                preferences.</p>
+
+            <div class="tt-jobs-search-row">
+                <div class="tt-input-wrap">
+                    <label for="jobQuery">Job title or keyword</label>
+                    <input id="jobQuery" type="text" placeholder="e.g. Junior Developer, Data Analyst" />
+                </div>
+                <div class="tt-input-wrap">
+                    <label for="jobLocation">Location</label>
+                    <input id="jobLocation" type="text" placeholder="e.g. Johannesburg, Remote" />
+                </div>
+                <button class="tt-btn tt-btn-primary tt-btn-search">Search</button>
+            </div>
+
+            <div class="tt-filters-row">
+                <div class="tt-filter-group">
+                    <span class="tt-filter-label">Salary</span>
+                    <select>
+                        <option>Any</option>
+                        <option>R0 – R10 000</option>
+                        <option>R10 000 – R25 000</option>
+                        <option>R25 000 – R40 000</option>
+                        <option>R40 000+</option>
+                    </select>
+                </div>
+                <div class="tt-filter-group">
+                    <span class="tt-filter-label">Experience</span>
+                    <select>
+                        <option>Any</option>
+                        <option>Student / Graduate</option>
+                        <option>Junior (0–2 years)</option>
+                        <option>Mid (2–5 years)</option>
+                        <option>Senior (5+ years)</option>
+                    </select>
+                </div>
+                <div class="tt-filter-group">
+                    <span class="tt-filter-label">Type</span>
+                    <select>
+                        <option>Any</option>
+                        <option>Full-time</option>
+                        <option>Part-time</option>
+                        <option>Internship</option>
+                        <option>Contract</option>
+                        <option>Remote</option>
+                    </select>
+                </div>
+                <div class="tt-filter-group">
+                    <span class="tt-filter-label">Skill</span>
+                    <select>
+                        <option>Any</option>
+                        <option>Software Development</option>
+                        <option>Data / Analytics</option>
+                        <option>Networking / Cloud</option>
+                        <option>Business / Finance</option>
+                        <option>Engineering</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="tt-jobs-results">
+            <div class="tt-section-header">
+                <h2>Jobs matching your profile</h2>
+                <span class="tt-jobs-count">24 jobs</span>
+            </div>
+
+            <div class="tt-jobs-layout">
+                <div class="tt-jobs-list">
+                    <article class="tt-job-result">
+                        <div>
+                            <h3>Junior Software Developer</h3>
+                            <p class="tt-job-meta">NovaTech Labs · Johannesburg · Hybrid</p>
+                            <p class="tt-job-tags">
+                                <span class="tt-chip">Full-time</span>
+                                <span class="tt-chip">Graduate friendly</span>
+                                <span class="tt-chip">JavaScript · React</span>
+                            </p>
+                            <p class="tt-job-salary">R25 000 – R35 000 · Med Aid · Performance bonus</p>
+                        </div>
+                        <div class="tt-job-actions">
+                            <p class="tt-job-posted">Posted 2 days ago</p>
+                            <a class="tt-btn tt-btn-primary tt-btn-sm" href="auth.html">Apply</a>
+                        </div>
+                    </article>
+
+                    <article class="tt-job-result">
+                        <div>
+                            <h3>Data Analyst Intern</h3>
+                            <p class="tt-job-meta">InsightWorks · Cape Town · On-site</p>
+                            <p class="tt-job-tags">
+                                <span class="tt-chip">Internship</span>
+                                <span class="tt-chip">Excel · SQL · Power BI</span>
+                            </p>
+                            <p class="tt-job-salary">R12 000 – R15 000 · 12 month contract</p>
+                        </div>
+                        <div class="tt-job-actions">
+                            <p class="tt-job-posted">Posted 1 week ago</p>
+                            <a class="tt-btn tt-btn-primary tt-btn-sm" href="auth.html">Apply</a>
+                        </div>
+                    </article>
+
+                    <article class="tt-job-result">
+                        <div>
+                            <h3>Graduate Engineer</h3>
+                            <p class="tt-job-meta">FutureEnergy · Secunda · On-site</p>
+                            <p class="tt-job-tags">
+                                <span class="tt-chip">Graduate Programme</span>
+                                <span class="tt-chip">Engineering · Process</span>
+                            </p>
+                            <p class="tt-job-salary">Market related · Rotation programme</p>
+                        </div>
+                        <div class="tt-job-actions">
+                            <p class="tt-job-posted">Posted 3 days ago</p>
+                            <a class="tt-btn tt-btn-primary tt-btn-sm" href="auth.html">Apply</a>
+                        </div>
+                    </article>
+                </div>
+
+                <aside class="tt-jobs-sidebar">
+                    <div class="tt-card">
+                        <div class="tt-card-header">
+                            <h3>Suggested for you</h3>
+                        </div>
+                        <ul class="tt-list">
+                            <li>
+                                <div>
+                                    <strong>IT Support Intern</strong>
+                                    <p>HelpDesk SA · Remote</p>
+                                </div>
+                                <span class="tt-chip tt-chip-info">New</span>
+                            </li>
+                            <li>
+                                <div>
+                                    <strong>Cloud Fundamentals Learnership</strong>
+                                    <p>CloudBridge · Johannesburg</p>
+                                </div>
+                                <span class="tt-chip">Learnership</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tt-card">
+                        <div class="tt-card-header">
+                            <h3>Boost your chances</h3>
+                        </div>
+                        <p class="tt-job-tip">Enrol in A+ Student Academy courses to unlock higher ranking for Data &
+                            Software roles.</p>
+                        <button class="tt-btn tt-btn-secondary tt-btn-sm">Explore A+ Academy</button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right">
+            <span aria-label="LinkedIn">🔗</span>
+            <span aria-label="Twitter">🐦</span>
+            <span aria-label="Instagram">📷</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

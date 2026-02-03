@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Company Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+
+<body data-theme="dark">
+
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+
+        <!-- Fallback links (replaced by role-aware JS below when logged in) -->
+        <nav class="tt-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN -->
+    <main class="tt-dashboard">
+        <!-- SIDEBAR -->
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar">TT</div>
+                <div>
+                    <h2>TalentTrack Labs</h2>
+                    <p>Hiring Partner · Tech &amp; Grad Talent</p>
+                </div>
+            </div>
+
+            <nav class="tt-sidebar-nav">
+                <a href="company.html">🏠 Home</a>
+                <a class="active" href="status.html">📊 Status</a>
+                <a href="candidates.html">🧑‍💻 Candidates</a>
+                <a href="freelancers.html">🧑‍🎨 Freelancers</a>
+                <a href="notifications.html">🔔 Notifications</a>
+                <a href="plan.html">🏢 Company Plan &amp; Verification</a>
+                <a href="focus.html">🚀 Today’s Hiring Focus</a>
+                <a href="shortlist.html">📄 Shortlist for Future Roles</a>
+                <a href="ranking.html">🏆 Talent Ranking</a>
+                <a href="saved-partnerships.html">📚 Saved CVs &amp; Partnerships</a>
+                <a href="../../messaging.html?view=company">💬 Messaging</a>
+                <a href="../../interview-room.html?view=company">🎥 Interview Room</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENT -->
+        <section class="tt-dashboard-main">
+
+            <!-- Overview widgets -->
+            <div class="tt-grid tt-grid-4">
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Open Roles</span>
+                    <strong>7</strong>
+                    <span class="tt-stat-trend up">3 closing this month</span>
+                </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Active Applications</span>
+                    <strong>124</strong>
+                    <span class="tt-stat-trend">Across 7 roles</span>
+                </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Interviews Scheduled</span>
+                    <strong>18</strong>
+                    <span class="tt-stat-trend up">+6 this week</span>
+                </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Hires This Quarter</span>
+                    <strong>9</strong>
+                    <span class="tt-stat-trend up">On track</span>
+                </div>
+            </div>
+
+            <!-- Pipeline Health -->
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Pipeline Health</h3>
+                    <span class="tt-chip tt-chip-info">Live (UI only)</span>
+                </div>
+
+                <div class="tt-grid tt-grid-3">
+                    <div class="tt-card-soft">
+                        <h4>Applications by Stage</h4>
+                        <ul class="tt-list" style="margin-top:6px;">
+                            <li>
+                                <div><strong>Screening</strong>
+                                    <p>42 candidates</p>
+                                </div><span class="tt-chip">34%</span>
+                            </li>
+                            <li>
+                                <div><strong>Interview</strong>
+                                    <p>28 candidates</p>
+                                </div><span class="tt-chip tt-chip-info">23%</span>
+                            </li>
+                            <li>
+                                <div><strong>Offer</strong>
+                                    <p>6 candidates</p>
+                                </div><span class="tt-chip">5%</span>
+                            </li>
+                            <li>
+                                <div><strong>Rejected</strong>
+                                    <p>48 candidates</p>
+                                </div><span class="tt-chip">38%</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tt-card-soft">
+                        <h4>Upcoming Interviews</h4>
+                        <ul class="tt-list" style="margin-top:6px;">
+                            <li>
+                                <div>
+                                    <strong>Junior Developer</strong>
+                                    <p>Tomorrow · 10:00 · 3 candidates</p>
+                                </div>
+                                <span class="tt-chip tt-chip-success">On schedule</span>
+                            </li>
+                            <li>
+                                <div>
+                                    <strong>Data Intern</strong>
+                                    <p>Friday · 14:30 · 2 candidates</p>
+                                </div>
+                                <span class="tt-chip">Pending</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tt-card-soft">
+                        <h4>Actions</h4>
+                        <div class="tt-badges-row" style="margin-top:8px;">
+                            <div class="tt-badge-card"><span>📄</span>
+                                <p>Review CVs</p>
+                            </div>
+                            <div class="tt-badge-card"><span>📨</span>
+                                <p>Send invites</p>
+                            </div>
+                            <div class="tt-badge-card"><span>🧭</span>
+                                <p>Set priorities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLA / Alerts -->
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>SLAs &amp; Alerts</h3>
+                    <span class="tt-chip">UI only</span>
+                </div>
+                <ul class="tt-list">
+                    <li>
+                        <div>
+                            <strong>Average response time</strong>
+                            <p>First reply to candidates within 2 business days.</p>
+                        </div>
+                        <span class="tt-chip tt-chip-success">OK</span>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Interview confirmations</strong>
+                            <p>Confirm at least 24 hours before interview.</p>
+                        </div>
+                        <span class="tt-chip tt-chip-info">Improve</span>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Offer turnaround</strong>
+                            <p>Send decisions within 3 days after final interview.</p>
+                        </div>
+                        <span class="tt-chip">Monitor</span>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a><a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a><a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right"><span>🔗</span><span>🐦</span><span>📷</span></div>
+    </footer>
+
+    <!-- Role-aware header: show Sign Out (no Dashboard) on role pages -->
+    <script>
+        (function () {
+            const nav = document.querySelector(".tt-nav");
+            const role = localStorage.getItem("TT_USER_ROLE");
+            const name = localStorage.getItem("TT_USER_NAME");
+            const P = "../../"; // from /dashboard/company/ to root
+
+            if (nav && role && name) {
+                nav.innerHTML = `
+          <a href="${P}index.html">Home</a>
+          <a href="${P}jobs.html">Jobs</a>
+          <a href="${P}freelance.html">Freelance</a>
+          <a id="ttSignOut" class="tt-btn tt-btn-sm tt-btn-danger" style="cursor:pointer;">Sign Out</a>
+        `;
+                const btn = document.getElementById("ttSignOut");
+                if (btn) {
+                    btn.addEventListener("click", () => {
+                        localStorage.removeItem("TT_USER_ROLE");
+                        localStorage.removeItem("TT_USER_NAME");
+                        localStorage.removeItem("TT_COMPANY_NAME");
+                        window.location.href = P + "auth.html";
+                    });
+                }
+            }
+        })();
+    </script>
+
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>
+``

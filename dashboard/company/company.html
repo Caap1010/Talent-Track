@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Company Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Global styles -->
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+
+        <!-- Fallback nav (replaced by JS below when logged in) -->
+        <nav class="tt-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="tt-dashboard">
+        <!-- SIDEBAR -->
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar">TT</div>
+                <div>
+                    <h2>TalentTrack Labs</h2>
+                    <p>Hiring Partner · Tech &amp; Grad Talent</p>
+                </div>
+            </div>
+
+            <!-- Company sidebar (local links only) -->
+            <nav class="tt-sidebar-nav">
+                <a class="active" href="company.html">🏠 Home</a>
+                <a href="status.html">📊 Status</a>
+                <a href="candidates.html">🧑‍💻 Candidates</a>
+                <a href="freelancers.html">🧑‍🎨 Freelancers</a>
+                <a href="notifications.html">🔔 Notifications</a>
+                <a href="plan.html">🏢 Company Plan &amp; Verification</a>
+                <a href="focus.html">🚀 Today’s Hiring Focus</a>
+                <a href="shortlist.html">📄 Shortlist for Future Roles</a>
+                <a href="ranking.html">🏆 Talent Ranking</a>
+                <a href="saved-partnerships.html">📚 Saved CVs &amp; Partnerships</a>
+                <a href="../../messaging.html?view=company">💬 Messaging</a>
+                <a href="../../interview-room.html?view=company">🎥 Interview Room</a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="tt-dashboard-main">
+
+            <!-- TOP STATS -->
+            <div class="tt-grid tt-grid-4">
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Open Roles</span>
+                    <strong>7</strong>
+                    <span class="tt-stat-trend up">3 closing this month</span>
+                </div>
+
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Active Applications</span>
+                    <strong>124</strong>
+                    <span class="tt-stat-trend">Across 7 roles</span>
+                </div>
+
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Interviews Scheduled</span>
+                    <strong>18</strong>
+                    <span class="tt-stat-trend up">+6 this week</span>
+                </div>
+
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Hires This Quarter</span>
+                    <strong>9</strong>
+                    <span class="tt-stat-trend up">On track</span>
+                </div>
+            </div>
+
+            <!-- TODAY'S FOCUS + PLAN -->
+            <div class="tt-grid tt-grid-2">
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Today’s Hiring Focus</h3>
+                        <span class="tt-chip tt-chip-info">🚀 Pipeline Health</span>
+                    </div>
+                    <p>
+                        Shortlist at least <strong>5 candidates</strong> for your “Junior Developer” role and send
+                        interview invites.
+                    </p>
+                    <a href="shortlist.html" class="tt-btn tt-btn-primary tt-btn-sm">View Shortlist</a>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Company Plan &amp; Verification</h3>
+                        <span class="tt-chip tt-chip-success">Verified</span>
+                    </div>
+
+                    <p class="tt-company-plan-text">
+                        You’re on <strong>VIP</strong>: up to 1 000 students, priority support, branded interview room
+                        and early access to features.
+                    </p>
+
+                    <div class="tt-plan-badges">
+                        <span class="tt-chip">Gold · Up to 100 students</span>
+                        <span class="tt-chip tt-chip-info">VIP · Up to 1 000 students</span>
+                        <span class="tt-chip tt-chip-locked">VVIP · Unlimited + A+ Academy</span>
+                    </div>
+
+                    <a class="tt-btn tt-btn-secondary tt-btn-sm" href="plan.html">Upgrade to VVIP</a>
+                </div>
+            </div>
+
+            <!-- SHORTLIST + RANKING + SAVED CVS -->
+            <div class="tt-grid tt-grid-3">
+
+                <div class="tt-card tt-card-jobs">
+                    <div class="tt-card-header">
+                        <h3>Shortlist for Future Roles</h3>
+                        <a class="tt-link" href="shortlist.html">View all</a>
+                    </div>
+
+                    <ul class="tt-list">
+                        <li>
+                            <div>
+                                <strong>Ayanda Nkosi</strong>
+                                <p>Junior Software Developer · React · Node.js</p>
+                            </div>
+                            <span class="tt-chip tt-chip-info">Top 5%</span>
+                        </li>
+
+                        <li>
+                            <div>
+                                <strong>Lerato Mabuza</strong>
+                                <p>Data Analyst Intern · Excel · Power BI · SQL</p>
+                            </div>
+                            <span class="tt-chip">Pipeline</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tt-card tt-card-jobs">
+                    <div class="tt-card-header">
+                        <h3>Talent Ranking</h3>
+                        <a class="tt-link" href="ranking.html">Open Stats</a>
+                    </div>
+
+                    <ul class="tt-list">
+                        <li>
+                            <div>
+                                <strong>Candidate Ranking</strong>
+                                <p>Top profiles for Junior Developer role.</p>
+                            </div>
+                            <span class="tt-chip tt-chip-info">AI Score</span>
+                        </li>
+
+                        <li>
+                            <div>
+                                <strong>Freelancer Ranking</strong>
+                                <p>Top 10 designers for landing page revamp.</p>
+                            </div>
+                            <span class="tt-chip">Shortlisted</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tt-card tt-card-academy">
+                    <div class="tt-card-header">
+                        <h3>Saved CVs &amp; Partnerships</h3>
+                    </div>
+
+                    <p>Access CVs you’ve bookmarked and manage partnerships with universities &amp; bootcamps.</p>
+
+                    <a class="tt-btn tt-btn-primary tt-btn-sm" href="saved-partnerships.html">View Saved CVs</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right">
+            <span aria-label="LinkedIn">🔗</span>
+            <span aria-label="Twitter">🐦</span>
+            <span aria-label="Instagram">📷</span>
+        </div>
+    </footer>
+
+    <!-- Role-aware header: on role pages show Sign Out (no Dashboard) -->
+    <script>
+        (function () {
+            const nav = document.querySelector(".tt-nav");
+            const role = localStorage.getItem("TT_USER_ROLE");
+            const name = localStorage.getItem("TT_USER_NAME");
+            const P = "../../"; // from /dashboard/company/ to root
+
+            if (nav && role && name) {
+                nav.innerHTML = `
+          <a href="${P}index.html">Home</a>
+          <a href="${P}jobs.html">Jobs</a>
+          <a href="${P}freelance.html">Freelance</a>
+          <a id="ttSignOut" class="tt-btn tt-btn-sm tt-btn-danger" style="cursor:pointer;">Sign Out</a>
+        `;
+                const btn = document.getElementById("ttSignOut");
+                if (btn) {
+                    btn.addEventListener("click", () => {
+                        localStorage.removeItem("TT_USER_ROLE");
+                        localStorage.removeItem("TT_USER_NAME");
+                        localStorage.removeItem("TT_COMPANY_NAME");
+                        window.location.href = P + "auth.html";
+                    });
+                }
+            }
+        })();
+    </script>
+
+    <!-- Global scripts -->
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>

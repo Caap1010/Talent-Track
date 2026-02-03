@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Candidate Academy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+
+<body data-theme="dark">
+
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+
+        <nav class="tt-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            gle" class="tt-toggle">🌙</button>
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="tt-dashboard">
+
+        <!-- SIDEBAR -->
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar" id="avatarInitials">CN</div>
+                <div>
+                    <h2 id="sidebarName">Candidate</h2>
+                    <p>Future Tech Professional</p>
+                </div>
+            </div>
+
+            <nav class="tt-sidebar-nav">
+                <a href="../candidate.html">🏠 Home</a>
+                <a href="../network.html">👥 My Network</a>
+                <a href="../challenge.html">🔥 Today’s Challenge</a>
+                <a href="../../messaging.html?view=candidate">💬 Messaging</a>
+                <a href="../../interview-room.html?view=candidate">🎥 Interview Room</a>
+                <a href="../ranking.html">🏆 Ranking</a>
+                <a href="../stats.html">📊 Stats</a>
+        </aside>
+
+
+
+        <!-- MAIN CONTENT -->
+        <section class="tt-dashboard-main">
+
+            <!-- PROFILE CARD -->
+            <div class="tt-grid tt-grid-2">
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Your A+ Learning Profile</h3>
+                        <span class="tt-chip" id="xpChip">XP 0</span>
+                    </div>
+
+                    <p id="profileHeadline" class="tt-auth-subtitle">Add your professional headline.</p>
+
+                    <div class="tt-badges-row">
+                        <div class="tt-badge-card">
+                            <span>📄</span>
+                            <p id="cvStatus">No CV uploaded</p>
+                        </div>
+                        <div class="tt-badge-card">
+                            <span>🎯</span>
+                            <p id="completionStatus">Profile 0% complete</p>
+                        </div>
+                        <div class="tt-badge-card">
+                            <span>💼</span>
+                            <p id="roleBadge">Role: –</p>
+                        </div>
+                    </div>
+
+                    <a id="viewCvBtn" href="#" target="_blank" class="tt-btn tt-btn-secondary tt-btn-sm"
+                        style="display:none;">
+                        Open CV
+                    </a>
+                </div>
+
+
+
+                <!-- UPDATE PROFILE -->
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Update Profile / Upload CV</h3>
+                        <span class="tt-chip tt-chip-info">A+ Boost</span>
+                    </div>
+
+                    <form id="academyProfileForm" class="tt-auth-form">
+
+                        <label>Full Name
+                            <input id="ap_fullName" type="text" />
+                        </label>
+
+                        <label>Professional Headline
+                            <input id="ap_headline" type="text" />
+                        </label>
+
+                        <label>Professional Summary
+                            <input id="ap_summary" type="text" />
+                        </label>
+
+                        <label>Email Address
+                            <input id="ap_email" type="email" />
+                        </label>
+
+                        <label>Contact Number
+                            <input id="ap_phone" type="text" />
+                        </label>
+
+                        <label>Your Role
+                            <input id="ap_role" type="text" />
+                        </label>
+
+                        <label>Description of Work
+                            <input id="ap_desc" type="text" />
+                        </label>
+
+                        <label>Upload CV (PDF ≤ 100MB)
+                            <input id="ap_cv" type="file" accept="application/pdf" />
+                        </label>
+
+                        <div style="display:flex; gap:10px;">
+                            <button type="submit" class="tt-btn tt-btn-primary tt-btn-sm">Save Profile</button>
+                            <button type="button" id="clearCvBtn" class="tt-btn tt-btn-secondary tt-btn-sm">Remove
+                                CV</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+
+
+            <!-- LEARNING PROVIDERS -->
+            <h2 style="margin-top:30px;">Learning Providers</h2>
+
+            <div class="tt-grid tt-grid-3">
+                <div class="tt-card tt-card-academy">
+                    <h3>Coursera</h3>
+                    <p>Certifications & Projects</p>
+                </div>
+                <div class="tt-card tt-card-academy">
+                    <h3>Cisco</h3>
+                    <p>Networking & IT</p>
+                </div>
+                <div class="tt-card tt-card-academy">
+                    <h3>Microsoft Learn</h3>
+                    <p>Cloud & Azure</p>
+                </div>
+            </div>
+
+
+
+            <!-- COURSE CATALOG -->
+            <h2 style="margin-top:40px;">Course Catalog</h2>
+            <p class="tt-auth-subtitle">7 curated courses</p>
+
+            <div class="tt-grid tt-grid-3">
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Cloud Fundamentals</h3><span class="tt-chip">+20 XP</span>
+                    </div>
+                    <p>IT & Cloud</p>
+                    <button data-course="cloud" class="tt-btn tt-btn-secondary tt-btn-sm">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Linux & Networking</h3><span class="tt-chip">+15 XP</span>
+                    </div>
+                    <p>IT Infrastructure</p>
+                    <button data-course="linux" class="tt-btn tt-btn-secondary tt-btn-sm">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>JavaScript Foundations</h3><span class="tt-chip">+15 XP</span>
+                    </div>
+                    <p>Software Dev</p>
+                    <button data-course="js-f" class="tt-btn tt-btn-secondary tt-btn-sm">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>React Components</h3><span class="tt-chip">+20 XP</span>
+                    </div>
+                    <p>Frontend Dev</p>
+                    <button data-course="react" class="tt-btn tt-btn-secondary tt-btn-sm">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>REST APIs & Postman</h3><span class="tt-chip">+15 XP</span>
+                    </div>
+                    <p>Software Dev</p>
+                    <button data-course="postman" class="tt-btn tt-btn-secondary tt-btn-sm">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Python for Data</h3><span class="tt-chip">+20 XP</span>
+                    </div>
+                    <p>Data & AI</p>
+                    <button data-course="python-data" class="tt-btn tt-btn-secondary tt-btn-sm">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Career Readiness</h3><span class="tt-chip">+15 XP</span>
+                    </div>
+                    <p>Career Development</p>
+                    <button data-course="career" class="tt-btn tt-btn-secondary tt-btn-sm">Mark as Done</button>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+
+
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+        </div>
+        <div class="tt-footer-right">
+            <span>🔗</span><span>🐦</span><span>📷</span>
+        </div>
+    </footer>
+
+
+    <!-- GLOBAL SCRIPT -->
+    <script src="../../js/main.js"></script>
+
+
+    <!-- PAGE LOGIC -->
+    <script>
+        const PROFILE_KEY = "TT_PROFILE";
+        const CV_URL_KEY = "TT_CV_URL";
+        const XP_KEY = "TT_XP";
+        const DONE_KEY = "TT_COURSES_DONE";
+
+        const $ = s => document.querySelector(s);
+        const pct = (n, d) => d ? Math.round((n / d) * 100) : 0;
+
+        let profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+        let cvUrl = localStorage.getItem(CV_URL_KEY) || "";
+        let xp = parseInt(localStorage.getItem(XP_KEY) || "0");
+        let courses = JSON.parse(localStorage.getItem(DONE_KEY) || "[]");
+
+        function hydrateUI() {
+            $("#sidebarName").textContent = profile.Full_Name || "Candidate";
+            $("#avatarInitials").textContent = (profile.Full_Name || "??").split(" ").map(p => p[0]).join("");
+
+            $("#profileHeadline").textContent = profile.Professional_Headline || "Add your professional headline.";
+
+            $("#roleBadge").textContent = "Role: " + (profile.Your_Role || "–");
+
+            if (cvUrl) {
+                $("#cvStatus").textContent = "CV uploaded";
+                $("#viewCvBtn").href = cvUrl;
+                $("#viewCvBtn").style.display = "inline-flex";
+            } else {
+                $("#cvStatus").textContent = "No CV uploaded";
+            }
+
+            const fields = ["Full_Name", "Professional_Headline", "Email_Address", "Contact_Number", "Your_Role"];
+            const filled = fields.filter(k => (profile[k] || "").trim() !== "").length;
+            $("#completionStatus").textContent = `Profile ${pct(filled, fields.length)}% complete`;
+
+            $("#xpChip").textContent = `XP ${xp}`;
+        }
+
+        function fillForm() {
+            $("#ap_fullName").value = profile.Full_Name || "";
+            $("#ap_headline").value = profile.Professional_Headline || "";
+            $("#ap_summary").value = profile.Professional_Summary || "";
+            $("#ap_email").value = profile.Email_Address || "";
+            $("#ap_phone").value = profile.Contact_Number || "";
+            $("#ap_role").value = profile.Your_Role || "";
+            $("#ap_desc").value = profile.Description_of_Work || "";
+        }
+
+        $("#academyProfileForm").addEventListener("submit", e => {
+            e.preventDefault();
+
+            const file = $("#ap_cv").files[0];
+            if (file) {
+                if (file.type !== "application/pdf") return alert("PDF only allowed.");
+                if (file.size > 100 * 1024 * 1024) return alert("Max file size is 100MB.");
+                if (cvUrl) try { URL.revokeObjectURL(cvUrl); } catch (e) { }
+                cvUrl = URL.createObjectURL(file);
+                localStorage.setItem(CV_URL_KEY, cvUrl);
+            }
+
+            profile = {
+                Full_Name: $("#ap_fullName").value.trim(),
+                Professional_Headline: $("#ap_headline").value.trim(),
+                Professional_Summary: $("#ap_summary").value.trim(),
+                Email_Address: $("#ap_email").value.trim(),
+                Contact_Number: $("#ap_phone").value.trim(),
+                Your_Role: $("#ap_role").value.trim(),
+                Description_of_Work: $("#ap_desc").value.trim()
+            };
+
+            localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+            xp = Math.max(xp, 10);
+            localStorage.setItem(XP_KEY, xp);
+
+            hydrateUI();
+            alert("Profile updated!");
+        });
+
+        $("#clearCvBtn").addEventListener("click", () => {
+            if (!cvUrl) return alert("No CV to remove.");
+            try { URL.revokeObjectURL(cvUrl); } catch (e) { }
+            cvUrl = "";
+            localStorage.removeItem(CV_URL_KEY);
+            hydrateUI();
+        });
+
+        document.querySelectorAll("[data-course]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.dataset.course;
+                if (courses.includes(id)) return alert("Already completed.");
+
+                courses.push(id);
+                localStorage.setItem(DONE_KEY, JSON.stringify(courses));
+
+                const award = (id === "cloud" || id === "react" || id === "python-data") ? 20 : 15;
+
+                xp += award;
+                localStorage.setItem(XP_KEY, xp);
+
+                btn.textContent = "Completed ✓";
+                btn.disabled = true;
+
+                hydrateUI();
+            });
+        });
+
+        fillForm();
+        hydrateUI();
+
+    </script>
+
+</body>
+
+</html>

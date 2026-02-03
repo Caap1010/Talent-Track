@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Company Notifications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+
+<body data-theme="dark">
+
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+
+        <!-- Fallback (replaced by role-aware JS below when logged in) -->
+        <nav class="tt-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN -->
+    <main class="tt-dashboard">
+        <!-- SIDEBAR -->
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar">TT</div>
+                <div>
+                    <h2>TalentTrack Labs</h2>
+                    <p>Hiring Partner · Tech &amp; Grad Talent</p>
+                </div>
+            </div>
+
+            <!-- Company sidebar (local links only) -->
+            <nav class="tt-sidebar-nav">
+                <a href="company.html" class="active">🏠 Home</a>
+                <a href="status.html">📊 Status</a>
+                <a href="candidates.html">🧑‍💻 Candidates</a>
+                <a href="freelancers.html">🧑‍🎨 Freelancers</a>
+                <a href="notifications.html">🔔 Notifications</a>
+                <a href="plan.html">🏢 Company Plan &amp; Verification</a>
+                <a href="focus.html">🚀 Today’s Hiring Focus</a>
+                <a href="shortlist.html">📄 Shortlist for Future Roles</a>
+                <a href="ranking.html">🏆 Talent Ranking</a>
+                <a href="saved-partnerships.html">📚 Saved CVs &amp; Partnerships</a>
+                <a href="../../messaging.html?view=company">💬 Messaging</a>
+                <a href="../../interview-room.html?view=company">🎥 Interview Room</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENT -->
+        <section class="tt-dashboard-main">
+
+            <!-- Filters / header -->
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Notifications</h3>
+                    <span class="tt-chip">Realtime (UI only)</span>
+                </div>
+
+                <div class="tt-filter-row">
+                    <div class="tt-input-group">
+                        <label for="notifSearch">Search</label>
+                        <input id="notifSearch" type="text" placeholder="Type to filter by title, role, company..." />
+                    </div>
+                    <div class="tt-input-group">
+                        <label for="notifType">Type</label>
+                        <select id="notifType">
+                            <option value="all">All</option>
+                            <option value="interview">Interview</option>
+                            <option value="application">Application</option>
+                            <option value="system">System</option>
+                            <option value="reminder">Reminder</option>
+                        </select>
+                    </div>
+                    <div class="tt-input-group">
+                        <label for="notifStatus">Status</label>
+                        <select id="notifStatus">
+                            <option value="all">All</option>
+                            <option value="new">New</option>
+                            <option value="read">Read</option>
+                            <option value="action">Action needed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Notifications list -->
+                <ul id="notifList" class="tt-list" aria-live="polite">
+                    <!-- Interview confirmed -->
+                    <li data-type="interview" data-status="new">
+                        <div>
+                            <strong>Interview confirmed</strong>
+                            <p>Candidate: Sfiso Tshotwane · Tomorrow 10:00</p>
+                        </div>
+                        <span class="tt-chip tt-chip-success">Confirmed</span>
+                    </li>
+
+                    <!-- New application -->
+                    <li data-type="application" data-status="new">
+                        <div>
+                            <strong>New application</strong>
+                            <p>Role: Junior Developer · NovaTech Labs</p>
+                        </div>
+                        <span class="tt-chip tt-chip-info">New</span>
+                    </li>
+
+                    <!-- System message -->
+                    <li data-type="system" data-status="read">
+                        <div>
+                            <strong>System update</strong>
+                            <p>Interview Room branding enabled for VIP plan.</p>
+                        </div>
+                        <span class="tt-chip">Read</span>
+                    </li>
+
+                    <!-- Reminder -->
+                    <li data-type="reminder" data-status="action">
+                        <div>
+                            <strong>Pending interview confirmations</strong>
+                            <p>2 interviews scheduled for Friday need confirmation.</p>
+                        </div>
+                        <span class="tt-chip tt-chip-info">Action</span>
+                    </li>
+
+                    <!-- Application status -->
+                    <li data-type="application" data-status="read">
+                        <div>
+                            <strong>Application moved to Interview</strong>
+                            <p>Candidate: Amanda Nkosi · Junior Developer</p>
+                        </div>
+                        <span class="tt-chip tt-chip-success">Progress</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Quick actions -->
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Quick Actions</h3>
+                    <span class="tt-chip">UI only</span>
+                </div>
+                <div class="tt-badges-row">
+                    <div class="tt-badge-card"><span>🧹</span>
+                        <p>Mark all as read</p>
+                    </div>
+                    <div class="tt-badge-card"><span>🔔</span>
+                        <p>Mute non-critical</p>
+                    </div>
+                    <div class="tt-badge-card"><span>⚙️</span>
+                        <p>Notification settings</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right"><span>🔗</span><span>🐦</span><span>📷</span></div>
+    </footer>
+
+    <!-- Role-aware header + simple filter logic -->
+    <script>
+        (function () {
+            // ----- Role-aware top nav (Home · Jobs · Freelance · Sign Out) -----
+            const nav = document.querySelector(".tt-nav");
+            const role = localStorage.getItem("TT_USER_ROLE");
+            const name = localStorage.getItem("TT_USER_NAME");
+            const P = "../../"; // from /dashboard/company/ to root
+
+            if (nav && role && name) {
+                nav.innerHTML = `
+          <a href="${P}index.html">Home</a>
+          <a href="${P}jobs.html">Jobs</a>
+          <a href="${P}freelance.html">Freelance</a>
+          <a id="ttSignOut" class="tt-btn tt-btn-sm tt-btn-danger" style="cursor:pointer;">Sign Out</a>
+        `;
+                const btn = document.getElementById("ttSignOut");
+                if (btn) {
+                    btn.addEventListener("click", () => {
+                        localStorage.removeItem("TT_USER_ROLE");
+                        localStorage.removeItem("TT_USER_NAME");
+                        localStorage.removeItem("TT_COMPANY_NAME");
+                        window.location.href = P + "auth.html";
+                    });
+                }
+            }
+
+            // ----- UI-only filters for notifications -----
+            const list = document.getElementById("notifList");
+            const q = document.getElementById("notifSearch");
+            const t = document.getElementById("notifType");
+            const s = document.getElementById("notifStatus");
+
+            function apply() {
+                const term = (q?.value || "").toLowerCase();
+                const type = t?.value || "all";
+                const status = s?.value || "all";
+
+                list.querySelectorAll("li").forEach(li => {
+                    const title = li.querySelector("strong")?.textContent.toLowerCase() || "";
+                    const meta = li.querySelector("p")?.textContent.toLowerCase() || "";
+                    const liType = li.getAttribute("data-type") || "";
+                    const liStatus = li.getAttribute("data-status") || "";
+
+                    const matchesTerm = !term || title.includes(term) || meta.includes(term);
+                    const matchesType = (type === "all") || (liType === type);
+                    const matchesStatus = (status === "all") || (liStatus === status);
+
+                    li.style.display = (matchesTerm && matchesType && matchesStatus) ? "" : "none";
+                });
+            }
+
+            [q, t, s].forEach(el => {
+                if (!el) return;
+                el.addEventListener("input", apply);
+                el.addEventListener("change", apply);
+            });
+            apply();
+        })();
+    </script>
+
+    <!-- Global scripts -->
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>

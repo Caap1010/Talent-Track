@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – A+ Student Academy (Freelancer)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+        .prov-grid {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    </style>
+</head>
+
+<body data-theme="dark">
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <main class="tt-dashboard">
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar" id="avatarInitials">SQ</div>
+                <div>
+                    <h2 id="sidebarName">Sfiso Tshotwane</h2>
+                    <p>Freelance Frontend & UI</p>
+                </div>
+            </div>
+            <nav class="tt-sidebar-nav">
+                <a href="../freelancer/freelancer.html" class="active">🏠 Home</a>
+                <a href="../freelancer/projects.html">📁 My Projects</a>
+                <a href="../freelancer/marketplace.html">🛒 Marketplace</a>
+                <a href="../../messaging.html?view=freelancer">💬 Messaging</a>
+                <a href="../../interview-room.html?view=freelancer">🎥 Interview Room</a>
+                <a href="../freelancer/stats.html">📊 Stats</a>
+                <a href="../freelancer/ranking.html">🏆 Ranking</a>
+                <a href="../freelancer/me.html">👤 Me</a>
+                <a href="../freelancer/challenge.html">🔥 Today’s Challenge</a>
+                <a href="../freelancer/academy.html">🎓 A+ Student Academy</a>
+                <a href="../freelancer/plan.html">💳 Freelancer Plan</a>
+                <a href="../freelancer/opportunities.html">🧾 Marketplace Opportunities</a>
+            </nav>
+        </aside>
+
+        <section class="tt-dashboard-main">
+            <!-- Profile & CV card -->
+            <div class="tt-grid tt-grid-2">
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Your A+ Profile</h3>
+                        <span class="tt-chip" id="xpChip">XP 0</span>
+                    </div>
+                    <p id="profileHeadline" class="tt-auth-subtitle">Add a professional headline</p>
+                    <div class="tt-badges-row">
+                        <div class="tt-badge-card"><span>📄</span>
+                            <p id="cvStatus">No CV uploaded</p>
+                        </div>
+                        <div class="tt-badge-card"><span>✅</span>
+                            <p id="completionStatus">Profile 0% complete</p>
+                        </div>
+                        <div class="tt-badge-card"><span>🎯</span>
+                            <p id="roleBadge">Role: –</p>
+                        </div>
+                    </div>
+                    <div style="margin-top:12px;">
+                        <a id="viewCvBtn" class="tt-btn tt-btn-secondary tt-btn-sm" href="#" target="_blank"
+                            rel="noopener" style="display:none;">Open CV (PDF)</a>
+                    </div>
+                </div>
+
+                <!-- Update Profile -->
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Update Profile / Upload CV</h3><span class="tt-chip tt-chip-info">A+ Boost</span>
+                    </div>
+                    <form id="academyProfileForm" class="tt-auth-form">
+                        <label>Full Name <input id="ap_fullName" type="text" placeholder="e.g., Sfiso Quintin Tshotwane"
+                                required /></label>
+                        <label>Professional Headline (Short) <input id="ap_headline" type="text"
+                                placeholder='e.g., "Freelance UI Engineer" or "Junior Data Analyst"' required /></label>
+                        <label>Professional Summary (1 line) <input id="ap_summary" type="text"
+                                placeholder="Brief background summary" /></label>
+                        <label>Email Address <input id="ap_email" type="email" placeholder="you@example.com" /></label>
+                        <label>Contact Number <input id="ap_phone" type="text" placeholder="+27 82 123 4567" /></label>
+                        <label>Your Role (Short) <input id="ap_role" type="text"
+                                placeholder="e.g., Freelancer – Frontend UI" /></label>
+                        <label>Description of Work (Short) <input id="ap_desc" type="text"
+                                placeholder="What you do and the value you bring" /></label>
+                        <label>Upload Your Current CV (PDF, ≤ 100MB) <input id="ap_cv" type="file"
+                                accept=".pdf" /></label>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+                            <button class="tt-btn tt-btn-primary tt-btn-sm" type="submit">Save Profile</button>
+                            <button id="clearCvBtn" class="tt-btn tt-btn-secondary tt-btn-sm" type="button">Remove
+                                CV</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Learning Providers -->
+            <div class="tt-card" style="margin-top:12px;">
+                <div class="tt-card-header">
+                    <h3>Learning Providers</h3><a class="tt-link" href="../../learn/index.html">Open Learning Hub →</a>
+                </div>
+                <div class="prov-grid">
+                    <a class="tt-badge-card" href="../../learn/coursera.html" target="_self"><span>🎓</span>
+                        <p>Coursera</p>
+                    </a>
+                    <a class="tt-badge-card" href="../../learn/cisco.html" target="_self"><span>🌐</span>
+                        <p>Cisco</p>
+                    </a>
+                    <a class="tt-badge-card" href="../../learn/microsoft.html" target="_self"><span>🧠</span>
+                        <p>Microsoft Learn</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Course Catalog -->
+            <div class="tt-card" style="margin-top:12px;">
+                <div class="tt-card-header">
+                    <h3>Course Catalog</h3><span class="tt-chip tt-chip-info" id="courseCount">0 courses</span>
+                </div>
+                <div class="tt-grid tt-grid-3" id="courseGrid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a><a href="#contact">Contact</a><a href="#privacy">Privacy Policy</a><a
+                href="#terms">Terms</a>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        /* ====== Shared store keys ====== */
+        const PROFILE_KEY = "TT_PROFILE";
+        const CV_URL_KEY = "TT_CV_URL";
+        const XP_KEY = "TT_XP";
+        const DONE_KEY = "TT_COURSES_DONE";
+
+        /* ====== Helpers ====== */
+        const $ = (s) => document.querySelector(s);
+        const pct = (n, d) => d ? Math.round((n / d) * 100) : 0;
+        const initials = (name) => (name || "S Q").split(" ").map(p => p[0]).slice(0, 2).join("").toUpperCase();
+
+        /* ====== Load state ====== */
+        let profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+        let cvUrl = localStorage.getItem(CV_URL_KEY) || "";
+        let xp = parseInt(localStorage.getItem(XP_KEY) || "0", 10);
+        let done = JSON.parse(localStorage.getItem(DONE_KEY) || "[]");
+
+        /* ====== Role-aware Course Catalog (Freelancer bias) ====== */
+        const COURSES = [
+            // IT & Cloud
+            { id: "cloud-fund", cat: "IT & Cloud", title: "Cloud Fundamentals (AWS/Azure/GCP)", xp: 20 },
+            { id: "linux-basics", cat: "IT & Cloud", title: "Linux & Networking Basics", xp: 15 },
+            // Software Dev
+            { id: "js-found", cat: "Software Dev", title: "JavaScript Foundations", xp: 15 },
+            { id: "react-components", cat: "Software Dev", title: "React Components & Patterns", xp: 20 },
+            { id: "api-rest", cat: "Software Dev", title: "REST APIs & Postman", xp: 15 },
+            // Data & AI
+            { id: "py-data", cat: "Data & AI", title: "Python for Data (Pandas/Numpy)", xp: 20 },
+            { id: "sql-core", cat: "Data & AI", title: "SQL Core (SELECT → JOIN)", xp: 15 },
+            { id: "bi-dash", cat: "Data & AI", title: "Build a BI Dashboard (Power BI)", xp: 15 },
+            // Cybersecurity
+            { id: "sec-basics", cat: "Cybersecurity", title: "Security Basics & Awareness", xp: 10 },
+            { id: "net-sec", cat: "Cybersecurity", title: "Network Security Essentials", xp: 15 },
+            // Business & Finance
+            { id: "excel-pro", cat: "Business & Finance", title: "Excel for Work (Formulas → Pivot)", xp: 15 },
+            { id: "fin-lite", cat: "Business & Finance", title: "Finance Lite for Non‑Finance", xp: 10 },
+            // Design & Creative
+            { id: "ux-found", cat: "Design & Creative", title: "UX Foundations", xp: 15 },
+            { id: "ui-systems", cat: "Design & Creative", title: "Design Systems & Tokens", xp: 15 },
+            // Marketing & Sales
+            { id: "growth-101", cat: "Marketing & Sales", title: "Digital Marketing 101", xp: 10 },
+            // Project & Agile
+            { id: "scrum-intro", cat: "Project & Agile", title: "Scrum for Beginners", xp: 10 },
+            { id: "jira-basics", cat: "Project & Agile", title: "Jira/Trello Basics", xp: 10 },
+        ];
+
+        /* ====== Hydrate UI ====== */
+        function hydrate() {
+            $("#sidebarName").textContent = profile.Full_Name || localStorage.getItem("TT_USER_NAME") || "Your Name";
+            $("#avatarInitials").textContent = initials($("#sidebarName").textContent);
+            $("#profileHeadline").textContent = profile.Professional_Headline || "Add a professional headline";
+            $("#roleBadge").textContent = "Role: " + (profile.Your_Role || "–");
+            if (cvUrl) { $("#cvStatus").textContent = "CV uploaded (PDF)"; $("#viewCvBtn").href = cvUrl; $("#viewCvBtn").style.display = "inline-flex"; }
+            else { $("#cvStatus").textContent = "No CV uploaded"; $("#viewCvBtn").style.display = "none"; }
+            const filled = ["Full_Name", "Professional_Headline", "Email_Address", "Contact_Number", "Your_Role"].filter(k => (profile[k] || "").trim()).length;
+            $("#completionStatus").textContent = `Profile ${pct(filled, 5)}% complete`;
+            $("#xpChip").textContent = `XP ${xp}`;
+        }
+
+        /* ====== Fill form ====== */
+        function fillForm() {
+            $("#ap_fullName").value = profile.Full_Name || "";
+            $("#ap_headline").value = profile.Professional_Headline || "";
+            $("#ap_summary").value = profile.Professional_Summary || "";
+            $("#ap_email").value = profile.Email_Address || "";
+            $("#ap_phone").value = profile.Contact_Number || "";
+            $("#ap_role").value = profile.Your_Role || "";
+            $("#ap_desc").value = profile.Description_of_Work || "";
+        }
+
+        /* ====== Render courses ====== */
+        function renderCourses() {
+            const grid = $("#courseGrid"); grid.innerHTML = "";
+            COURSES.forEach(c => {
+                const card = document.createElement("div");
+                card.className = "tt-card";
+                card.innerHTML = `
+      <div class="tt-card-header"><h3>${c.title}</h3><span class="tt-chip">+${c.xp} XP</span></div>
+      <p class="tt-auth-subtitle">${c.cat}</p>
+      <button class="tt-btn tt-btn-secondary tt-btn-sm" data-course="${c.id}">
+        ${done.includes(c.id) ? "Completed ✔" : "Mark as Done"}
+      </button>
+    `;
+                if (done.includes(c.id)) card.querySelector("button").disabled = true;
+                grid.appendChild(card);
+            });
+            $("#courseCount").textContent = `${COURSES.length} courses`;
+        }
+
+        /* ====== Events ====== */
+        $("#academyProfileForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const p = {
+                Full_Name: $("#ap_fullName").value.trim(),
+                Professional_Headline: $("#ap_headline").value.trim(),
+                Professional_Summary: $("#ap_summary").value.trim(),
+                Email_Address: $("#ap_email").value.trim(),
+                Contact_Number: $("#ap_phone").value.trim(),
+                Your_Role: $("#ap_role").value.trim(),
+                Description_of_Work: $("#ap_desc").value.trim()
+            };
+            if (!p.Full_Name || !p.Professional_Headline) return alert("Full Name & Headline are required.");
+            const file = $("#ap_cv").files[0];
+            if (file) {
+                if (file.type !== "application/pdf") return alert("Please upload a PDF.");
+                if (file.size > 100 * 1024 * 1024) return alert("File exceeds 100MB.");
+                if (cvUrl) try { URL.revokeObjectURL(cvUrl); } catch (e) { }
+                cvUrl = URL.createObjectURL(file);
+                localStorage.setItem(CV_URL_KEY, cvUrl);
+            }
+            profile = p;
+            localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+            const basics = p.Full_Name && p.Professional_Headline && p.Email_Address && p.Contact_Number;
+            if (basics) { xp = Math.max(xp, 10); localStorage.setItem(XP_KEY, String(xp)); }
+            hydrate(); alert("Profile saved ✅");
+        });
+        $("#clearCvBtn").addEventListener("click", () => {
+            if (!cvUrl) return alert("No CV stored.");
+            try { URL.revokeObjectURL(cvUrl); } catch (e) { }
+            cvUrl = ""; localStorage.removeItem(CV_URL_KEY); hydrate(); alert("CV removed.");
+        });
+        document.addEventListener("click", (e) => {
+            const btn = e.target.closest("[data-course]"); if (!btn) return;
+            const id = btn.getAttribute("data-course"); if (done.includes(id)) return;
+            done.push(id); localStorage.setItem(DONE_KEY, JSON.stringify(done));
+            const award = (COURSES.find(x => x.id === id) || { xp: 10 }).xp; xp += award; localStorage.setItem(XP_KEY, String(xp));
+            btn.textContent = "Completed ✔"; btn.disabled = true; hydrate();
+        });
+
+        /* ====== Init ====== */
+        fillForm(); hydrate(); renderCourses();
+    </script>
+</body>
+
+</html>
+``

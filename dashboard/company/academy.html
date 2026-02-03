@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Company Academy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+
+        <nav class="tt-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN -->
+    <main class="tt-dashboard">
+        <!-- SIDEBAR -->
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar" id="avatarInitials">CP</div>
+                <div>
+                    <h2 id="sidebarName">Company User</h2>
+                    <p>Hiring Partner</p>
+                </div>
+            </div>
+
+            <!-- ✅ FIXED: proper anchors, no plain text -->
+            <nav class="tt-sidebar-nav">
+                <a href="../company.html">🏠 Home</a>
+                <a href="../status.html">📊 Status</a>
+                <a href="../candidates.html">👥 Candidates</a>
+                <a href="../freelancers.html">🧑‍💻 Freelancers</a>
+                <a href="../notifications.html">🔔 Notifications</a>
+                <a href="../plan.html">💳 Company Plan</a>
+                <a class="active" href="academy.html">🎓 Company Academy</a>
+                <a href="../focus.html">🎯 Today’s Focus</a>
+                <a href="../shortlist.html">📄 Shortlist</a>
+                <a href="../ranking.html">🏆 Ranking</a>
+                <a href="../saved-partnerships.html">📂 Saved CVs & Partnerships</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENT -->
+        <section class="tt-dashboard-main">
+
+            <!-- Profile / KPI -->
+            <div class="tt-grid tt-grid-2">
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Company Training Profile</h3>
+                        <span class="tt-chip" id="xpChip">XP 0</span>
+                    </div>
+
+                    <p id="profileHeadline" class="tt-auth-subtitle">
+                        Build hiring excellence for your team.
+                    </p>
+
+                    <div class="tt-badges-row">
+                        <div class="tt-badge-card"><span>📄</span>
+                            <p id="cvStatus">No Document Uploaded</p>
+                        </div>
+                        <div class="tt-badge-card"><span>🎯</span>
+                            <p id="completionStatus">Profile 0% complete</p>
+                        </div>
+                        <div class="tt-badge-card"><span>🏢</span>
+                            <p id="roleBadge">Role: Hiring Partner</p>
+                        </div>
+                        <!-- ✅ Students Enrolled -->
+                        <div class="tt-badge-card"><span>👥</span>
+                            <p id="studentsCount">Students Enrolled: 0</p>
+                        </div>
+                    </div>
+
+                    <!-- Optional: show open file button when a PDF is stored -->
+                    <div style="margin-top:10px;">
+                        <a id="viewCvBtn" href="#" class="tt-btn tt-btn-secondary tt-btn-sm" style="display:none;"
+                            target="_blank" rel="noopener">
+                            Open Uploaded File
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Update profile -->
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Update Company Profile</h3>
+                        <span class="tt-chip tt-chip-info">A+ Boost</span>
+                    </div>
+
+                    <form id="academyProfileForm" class="tt-auth-form" novalidate>
+                        <label>Company Name
+                            <input id="ap_fullName" type="text" placeholder="e.g., TalentTrack Labs" />
+                        </label>
+
+                        <label>Hiring Manager Name
+                            <input id="ap_headline" type="text" placeholder="e.g., Jane Dlamini" />
+                        </label>
+
+                        <label>About Company
+                            <input id="ap_summary" type="text" placeholder="Short description (1 sentence)" />
+                        </label>
+
+                        <label>Work Email
+                            <input id="ap_email" type="email" placeholder="hr@example.com" />
+                        </label>
+
+                        <label>Contact Number
+                            <input id="ap_phone" type="text" placeholder="+27 11 123 4567" />
+                        </label>
+
+                        <label>Your Role
+                            <input id="ap_role" type="text" placeholder="e.g., Talent Lead" />
+                        </label>
+
+                        <label>Hiring Philosophy
+                            <input id="ap_desc" type="text" placeholder="What you value in hiring" />
+                        </label>
+
+                        <label>Upload Document (PDF ≤ 100MB)
+                            <input id="ap_cv" type="file" accept="application/pdf" />
+                        </label>
+
+                        <div style="display:flex; gap:10px;">
+                            <button type="submit" class="tt-btn tt-btn-primary tt-btn-sm">Save Profile</button>
+                            <button type="button" id="clearCvBtn" class="tt-btn tt-btn-secondary tt-btn-sm">Remove
+                                File</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Providers -->
+            <h2 style="margin-top:32px;">Learning Providers</h2>
+            <div class="tt-grid tt-grid-3">
+                <div class="tt-card tt-card-academy">
+                    <h3>Coursera</h3>
+                    <p>Leadership & HR Skills</p>
+                </div>
+                <div class="tt-card tt-card-academy">
+                    <h3>LinkedIn Learning</h3>
+                    <p>Recruitment & Hiring</p>
+                </div>
+                <div class="tt-card tt-card-academy">
+                    <h3>Microsoft Learn</h3>
+                    <p>Digital HR Tools</p>
+                </div>
+            </div>
+
+            <!-- Courses -->
+            <h2 style="margin-top:40px;">Company Training Courses</h2>
+            <p class="tt-auth-subtitle">5 curated leadership & hiring courses</p>
+            <div class="tt-grid tt-grid-3">
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Modern Hiring 101</h3><span class="tt-chip">+20 XP</span>
+                    </div>
+                    <p>Understanding modern recruitment strategy</p>
+                    <button class="tt-btn tt-btn-secondary tt-btn-sm" data-course="hiring101">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Interview Intelligence</h3><span class="tt-chip">+15 XP</span>
+                    </div>
+                    <p>Master structured interviews & assessments</p>
+                    <button class="tt-btn tt-btn-secondary tt-btn-sm" data-course="interviewInt">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Talent Sourcing Masterclass</h3><span class="tt-chip">+15 XP</span>
+                    </div>
+                    <p>Build powerful talent pipelines</p>
+                    <button class="tt-btn tt-btn-secondary tt-btn-sm" data-course="sourcing">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Diversity Hiring</h3><span class="tt-chip">+20 XP</span>
+                    </div>
+                    <p>Create inclusive, bias‑free hiring systems</p>
+                    <button class="tt-btn tt-btn-secondary tt-btn-sm" data-course="diversity">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>HR Data & Analytics</h3><span class="tt-chip">+20 XP</span>
+                    </div>
+                    <p>Leverage data to improve recruitment performance</p>
+                    <button class="tt-btn tt-btn-secondary tt-btn-sm" data-course="hrdata">Mark as Done</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a><a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a><a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right"><span>🔗</span><span>🐦</span><span>📷</span></div>
+    </footer>
+
+    <!-- Global JS -->
+    <script src="../../js/main.js"></script>
+
+    <!-- Page logic -->
+    <script>
+        // Company-specific keys (separate from candidate/freelancer)
+        const PROFILE_KEY = "TT_PROFILE_COMPANY";
+        const CV_KEY = "TT_CV_COMPANY";
+        const XP_KEY = "TT_XP_COMPANY";
+        const COURSES_KEY = "TT_COURSE_COMPANY";
+        const STUDENTS_KEY = "TT_COMPANY_STUDENTS";
+
+        const $ = (s) => document.querySelector(s);
+        const pct = (n, d) => d ? Math.round((n / d) * 100) : 0;
+
+        // Load
+        let profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+        let cvUrl = localStorage.getItem(CV_KEY) || "";
+        let xp = parseInt(localStorage.getItem(XP_KEY) || "0", 10);
+        let done = JSON.parse(localStorage.getItem(COURSES_KEY) || "[]");
+        let students = parseInt(localStorage.getItem(STUDENTS_KEY) || "0", 10);
+
+        function hydrateUI() {
+            $("#sidebarName").textContent = profile.Full_Name || "Company User";
+            $("#avatarInitials").textContent = (profile.Full_Name || "CP").split(" ").map(p => p[0]).join("");
+
+            $("#profileHeadline").textContent = profile.Professional_Headline || "Build hiring excellence for your team.";
+            $("#roleBadge").textContent = "Role: " + (profile.Your_Role || "Hiring Partner");
+            $("#studentsCount").textContent = "Students Enrolled: " + students;
+
+            if (cvUrl) {
+                $("#cvStatus").textContent = "Document uploaded";
+                const btn = $("#viewCvBtn");
+                btn.href = cvUrl;
+                btn.style.display = "inline-flex";
+            } else {
+                $("#cvStatus").textContent = "No Document Uploaded";
+                $("#viewCvBtn").style.display = "none";
+            }
+
+            const req = ["Full_Name", "Professional_Headline", "Email_Address", "Contact_Number", "Your_Role"];
+            const filled = req.filter(k => (profile[k] || "").trim() !== "").length;
+            $("#completionStatus").textContent = `Profile ${pct(filled, req.length)}% complete`;
+
+            $("#xpChip").textContent = `XP ${xp}`;
+        }
+
+        function fillForm() {
+            $("#ap_fullName").value = profile.Full_Name || "";
+            $("#ap_headline").value = profile.Professional_Headline || "";
+            $("#ap_summary").value = profile.Professional_Summary || "";
+            $("#ap_email").value = profile.Email_Address || "";
+            $("#ap_phone").value = profile.Contact_Number || "";
+            $("#ap_role").value = profile.Your_Role || "";
+            $("#ap_desc").value = profile.Description_of_Work || "";
+        }
+
+        // Save profile
+        $("#academyProfileForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const file = $("#ap_cv").files[0];
+            if (file) {
+                if (file.type !== "application/pdf") return alert("PDF only.");
+                if (file.size > 100 * 1024 * 1024) return alert("Max 100MB.");
+                if (cvUrl) { try { URL.revokeObjectURL(cvUrl); } catch (e) { } }
+                cvUrl = URL.createObjectURL(file);
+                localStorage.setItem(CV_KEY, cvUrl);
+            }
+
+            profile = {
+                Full_Name: $("#ap_fullName").value.trim(),
+                Professional_Headline: $("#ap_headline").value.trim(),
+                Professional_Summary: $("#ap_summary").value.trim(),
+                Email_Address: $("#ap_email").value.trim(),
+                Contact_Number: $("#ap_phone").value.trim(),
+                Your_Role: $("#ap_role").value.trim(),
+                Description_of_Work: $("#ap_desc").value.trim()
+            };
+            localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+
+            // Demo behavior: when saving the profile, increment Students Enrolled by 1
+            xp = Math.max(xp, 5);
+            localStorage.setItem(XP_KEY, String(xp));
+
+            students += 1;
+            localStorage.setItem(STUDENTS_KEY, String(students));
+
+            hydrateUI();
+            alert("Company profile updated!");
+        });
+
+        // Remove file
+        $("#clearCvBtn").addEventListener("click", () => {
+            if (!cvUrl) return alert("No file to remove.");
+            try { URL.revokeObjectURL(cvUrl); } catch (e) { }
+            cvUrl = "";
+            localStorage.removeItem(CV_KEY);
+            hydrateUI();
+        });
+
+        // Course completions
+        document.querySelectorAll("[data-course]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const id = btn.dataset.course;
+                if (done.includes(id)) return alert("Already completed.");
+                done.push(id);
+                localStorage.setItem(COURSES_KEY, JSON.stringify(done));
+                // Award XP
+                const award = (id === "hiring101" || id === "diversity" || id === "hrdata") ? 20 : 15;
+                xp += award;
+                localStorage.setItem(XP_KEY, String(xp));
+                btn.textContent = "Completed ✓";
+                btn.disabled = true;
+                hydrateUI();
+            });
+        });
+
+        // Init
+        fillForm();
+        hydrateUI();
+    </script>
+</body>
+
+</html>

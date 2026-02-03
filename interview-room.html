@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Interview Room | TalentTrack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <a href="index.html">Home</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="freelance.html">Freelance</a>
+            <a href="auth.html">Login</a>
+            <a href="register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <section class="tt-page-header">
+            <div>
+                <h1 class="tt-page-title">Interview Room</h1>
+                <p class="tt-page-subtitle">
+                    Manage your upcoming interviews, track their status, and join live sessions directly in TalentTrack.
+                </p>
+            </div>
+            <div class="tt-page-meta">
+                <span id="viewPill" class="tt-badge tt-badge-soft"></span>
+                <span class="tt-badge tt-badge-soft">Beta</span>
+                <span class="tt-badge tt-badge-success">Live Mode Enabled</span>
+            </div>
+        </section>
+
+        <section class="tt-grid tt-grid-3-1 tt-interview-layout">
+            <!-- LEFT: TABLE -->
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Upcoming Interviews</h3>
+                    <span class="tt-card-meta" id="interviewCountLabel">0 interviews</span>
+                </div>
+
+                <div class="tt-filter-row">
+                    <div class="tt-input-group">
+                        <label for="filterRole">Role / Company</label>
+                        <input type="text" id="filterRole" placeholder="Search by role or company..." />
+                    </div>
+                    <div class="tt-input-group">
+                        <label for="filterStatus">Status</label>
+                        <select id="filterStatus">
+                            <option value="all">All</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="tt-input-group">
+                        <label for="filterDate">Date</label>
+                        <input type="date" id="filterDate" />
+                    </div>
+                </div>
+
+                <div class="tt-table-wrapper">
+                    <table class="tt-table" aria-label="Interview schedule">
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Role</th>
+                                <th>Date &amp; Time</th>
+                                <th>Status</th>
+                                <th>Countdown</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="interviewTableBody"><!-- rows injected by main.js --></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RIGHT: SIDEBAR -->
+            <aside class="tt-card tt-interview-sidebar">
+                <div class="tt-card-header">
+                    <h3>Today’s Focus</h3>
+                </div>
+                <ul class="tt-checklist">
+                    <li><input type="checkbox" id="chkProfile" checked /> <label for="chkProfile">Profile &amp; CV
+                            updated</label></li>
+                    <li><input type="checkbox" id="chkResearch" /> <label for="chkResearch">Research each
+                            company</label></li>
+                    <li><input type="checkbox" id="chkQuestions" /> <label for="chkQuestions">Prepare 3 smart
+                            questions</label></li>
+                    <li><input type="checkbox" id="chkTechCheck" /> <label for="chkTechCheck">Test mic, camera &amp;
+                            internet</label></li>
+                </ul>
+
+                <div class="tt-interview-tip">
+                    <h4>Pro Tip</h4>
+                    <p id="interviewTipText">Show energy in the first 30 seconds – that’s when most impressions are
+                        formed.</p>
+                </div>
+
+                <div class="tt-card-section">
+                    <h4>Next Interview</h4>
+                    <p class="tt-small" id="nextInterviewLabel">No upcoming interviews found.</p>
+                </div>
+            </aside>
+        </section>
+
+        <!-- SESSION OVERLAY -->
+        <section id="interviewSession" class="tt-interview-session tt-hidden" aria-hidden="true">
+            <div class="tt-interview-session-backdrop"></div>
+            <div class="tt-interview-session-window" role="dialog" aria-modal="true" aria-labelledby="sessionTitle">
+                <header class="tt-session-header">
+                    <div>
+                        <h2 id="sessionTitle">Live Interview</h2>
+                        <p id="sessionMeta" class="tt-session-meta">Loading interview details...</p>
+                        <p id="sessionIdentity" class="tt-session-meta"></p>
+                    </div>
+                    <button id="leaveInterviewBtn" class="tt-btn tt-btn-ghost tt-btn-danger">Leave Interview ✖</button>
+                </header>
+
+                <div class="tt-session-body">
+                    <div class="tt-session-video-area">
+                        <div class="tt-video-tile">
+                            <div class="tt-video-placeholder"><span>Interviewer Video</span></div>
+                            <div class="tt-video-label">Interviewer</div>
+                        </div>
+                        <div class="tt-video-tile">
+                            <div class="tt-video-placeholder tt-video-self-bg"><span>You</span></div>
+                            <div class="tt-video-label">You</div>
+                        </div>
+                    </div>
+
+                    <aside class="tt-session-sidebar">
+                        <div class="tt-card-soft">
+                            <h4>Interview Details</h4>
+                            <p id="sessionRole">Role:</p>
+                            <p id="sessionCompany">Company:</p>
+                            <p id="sessionTime">Time:</p>
+                            <p id="sessionStatus">Status:</p>
+                        </div>
+                        <div class="tt-card-soft">
+                            <h4>Live Timer</h4>
+                            <p id="sessionLiveTimer" class="tt-live-timer">00:00</p>
+                        </div>
+                        <div class="tt-card-soft">
+                            <h4>Notes (for you only)</h4>
+                            <textarea id="sessionNotes" rows="6"
+                                placeholder="Write key points, feedback, or questions..."></textarea>
+                        </div>
+                    </aside>
+                </div>
+
+                <footer class="tt-session-controls">
+                    <button class="tt-control-btn tt-control-danger">🎙️ Mute</button>
+                    <button class="tt-control-btn">📷 Camera</button>
+                    <button class="tt-control-btn">🖥️ Share Screen</button>
+                    <button class="tt-control-btn">💬 Chat (UI only)</button>
+                    <button class="tt-control-btn">📞 Audio Only</button>
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right">
+            <span aria-label="LinkedIn">🔗</span>
+            <span aria-label="Twitter">🐦</span>
+            <span aria-label="Instagram">📷</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

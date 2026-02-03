@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Messaging | TalentTrack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <a href="index.html">Home</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="freelance.html">Freelance</a>
+            <a href="messaging.html?view=candidate">Messaging</a>
+            <a href="auth.html">Login</a>
+            <a href="register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN -->
+    <main class="tt-messages-page">
+        <section class="tt-page-header">
+            <div>
+                <h1 class="tt-page-title">Messages</h1>
+                <p class="tt-page-subtitle">
+                    Chat with companies, candidates and freelancers in one place. Keep your hiring and career
+                    conversations organised.
+                </p>
+            </div>
+            <div class="tt-page-meta">
+                <span id="messagesViewPill" class="tt-badge tt-badge-soft"></span>
+                <span class="tt-badge tt-badge-soft">Beta</span>
+                <span class="tt-badge tt-badge-success">Realtime (UI only)</span>
+            </div>
+        </section>
+
+        <section id="ttMessagesRoot" class="tt-messages-layout">
+            <!-- LEFT -->
+            <aside class="tt-card tt-messages-sidebar">
+                <div class="tt-card-header">
+                    <h3>Conversations</h3>
+                    <span id="conversationCountLabel" class="tt-card-meta">0 chats</span>
+                </div>
+                <div class="tt-messages-search">
+                    <input type="text" id="conversationSearch" placeholder="Search by name, role or company..." />
+                </div>
+                <div id="conversationList" class="tt-conversation-list" aria-label="Conversation list"></div>
+            </aside>
+
+            <!-- MIDDLE -->
+            <section class="tt-card tt-chat-window">
+                <header class="tt-chat-header">
+                    <div>
+                        <h3 id="chatTitle">Select a conversation</h3>
+                        <p id="chatSubtitle" class="tt-chat-subtitle"></p>
+                        <p id="chatIdentity" class="tt-chat-identity"></p>
+                    </div>
+                    <div class="tt-chat-actions">
+                        <button class="tt-control-btn tt-control-secondary" type="button">📞 Voice Call</button>
+                        <button class="tt-control-btn tt-control-secondary" type="button">🎥 Video Call</button>
+                        <button class="tt-control-btn tt-control-secondary" type="button">👥 View Profile</button>
+                        <button id="openInterviewRoomBtn" class="tt-control-btn tt-control-secondary tt-hidden"
+                            type="button">
+                            🎥 Open Interview Room
+                        </button>
+                    </div>
+                </header>
+
+                <div id="chatMessages" class="tt-chat-messages" aria-label="Messages">
+                    <p class="tt-chat-empty">No conversation selected yet. Choose a chat on the left to start.</p>
+                </div>
+
+                <footer class="tt-chat-input-bar">
+                    <div id="typingIndicator" class="tt-typing-indicator tt-hidden">Typing…</div>
+                    <div class="tt-chat-input-row">
+                        <input type="text" id="chatInput" placeholder="Type a message and press Enter to send..." />
+                        <button id="chatSendBtn" class="tt-btn tt-btn-primary tt-btn-sm" type="button">Send</button>
+                    </div>
+                </footer>
+            </section>
+
+            <!-- RIGHT -->
+            <aside class="tt-card tt-messages-info">
+                <div class="tt-card-header">
+                    <h3>Conversation Info</h3>
+                </div>
+                <div class="tt-info-block">
+                    <p><strong id="infoName">No conversation selected</strong></p>
+                    <p id="infoRole" class="tt-small"></p>
+                    <p id="infoCompany" class="tt-small"></p>
+                </div>
+                <div class="tt-info-block">
+                    <h4>Next Steps</h4>
+                    <ul class="tt-info-list" id="infoNextSteps">
+                        <li>Select a conversation to view suggestions.</li>
+                    </ul>
+                </div>
+                <div class="tt-info-block">
+                    <h4>Notes</h4>
+                    <textarea id="infoNotes" rows="5"
+                        placeholder="Add quick notes about this conversation (UI only)..."></textarea>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right">
+            <span aria-label="LinkedIn">🔗</span>
+            <span aria-label="Twitter">🐦</span>
+            <span aria-label="Instagram">📷</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

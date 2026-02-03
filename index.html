@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Find Jobs. Hire Talent. Grow Careers.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+
+        <nav class="tt-nav">
+            <a href="index.html">Home</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="freelance.html">Freelance</a>
+            <a href="auth.html">Login</a>
+            <a href="register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO -->
+        <section class="tt-hero">
+            <div class="tt-hero-overlay"></div>
+
+            <div class="tt-hero-content">
+                <p class="tt-mantra">“The absence of evidence is not the evidence of absence.”</p>
+                <h1>Find Jobs. Hire Talent. <span>Grow Careers.</span></h1>
+                <p class="tt-subtitle">
+                    TalentTrack connects candidates, companies, and freelancers through AI‑powered matching and gamified
+                    growth.
+                </p>
+
+                <div class="tt-hero-actions">
+                    <a href="register.html" class="tt-btn tt-btn-primary">Sign Up</a>
+                    <a href="auth.html" class="tt-btn tt-btn-secondary">Post a Job</a>
+                    <a href="jobs.html" class="tt-btn tt-btn-ghost">Find Talent</a>
+                </div>
+
+                <div class="tt-hero-stats">
+                    <div><strong>500+</strong><span>Jobs posted</span></div>
+                    <div><strong>1.2K</strong><span>Talents onboarded</span></div>
+                    <div><strong>92%</strong><span>Match satisfaction</span></div>
+                </div>
+            </div>
+
+            <div class="tt-hero-visual"></div>
+        </section>
+
+        <!-- QUOTES -->
+        <section class="tt-section">
+            <h2>Stay Motivated</h2>
+            <div id="quotesSlider" class="tt-quotes">
+                <div class="tt-quotes-border">
+                    <p id="currentQuote" class="tt-quote-text">
+                        “Success is the sum of small efforts, repeated day in and day out.”
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED JOBS -->
+        <section class="tt-section">
+            <div class="tt-section-header">
+                <h2>Featured Opportunities</h2>
+                <a class="tt-link" href="jobs.html">View all jobs →</a>
+            </div>
+            <div class="tt-job-slider" id="jobSlider"><!-- injected by main.js --></div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right">
+            <span aria-label="LinkedIn">🔗</span>
+            <span aria-label="Twitter">🐦</span>
+            <span aria-label="Instagram">📷</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

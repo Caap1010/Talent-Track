@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Candidate Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <!-- fallback, will be replaced by main.js -->
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- DASHBOARD -->
+    <main class="tt-dashboard">
+        <!-- Sidebar -->
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar">SQ</div>
+                <div>
+                    <h2>Sfiso Tshotwane</h2>
+                    <p>Junior Tech Enthusiast</p>
+                </div>
+            </div>
+            <nav class="tt-sidebar-nav">
+                <button class="active">🏠 Home</button>
+                <button>👥 My Network</button>
+                <button>💼 Jobs</button>
+                <a href="../../messaging.html?view=candidate">💬 Messaging</a>
+                <button>🧠 Interview Prep</button>
+                <a href="../../interview-room.html?view=candidate">🎥 Interview Room</a>
+                <button>📊 Stats</button>
+                <button>🏆 Ranking</button>
+                <button>👤 Me</button>
+            </nav>
+        </aside>
+
+        <!-- Content -->
+        <section class="tt-dashboard-main">
+            <!-- Top stats -->
+            <div class="tt-grid tt-grid-4">
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Profile Views</span>
+                    <strong>248</strong>
+                    <span class="tt-stat-trend up">+18% this week</span>
+                </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">CV Downloads</span>
+                    <strong>37</strong>
+                    <span class="tt-stat-trend">Stable</span>
+                </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Interviews</span>
+                    <strong>5</strong>
+                    <span class="tt-stat-trend up">+2 scheduled</span>
+                </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Companies Interested</span>
+                    <strong>9</strong>
+                    <span class="tt-stat-trend up">+3 this month</span>
+                </div>
+            </div>
+
+            <!-- Challenge + Badges -->
+            <div class="tt-grid tt-grid-2">
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Today’s Challenge</h3>
+                        <span class="tt-chip tt-chip-info">🔥 35 XP</span>
+                    </div>
+                    <p>“Record a 60‑second pitch about your dream role and upload it to your profile.”</p>
+                    <button class="tt-btn tt-btn-primary tt-btn-sm">Mark as Done</button>
+                </div>
+
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Gamification Badges</h3>
+                        <span class="tt-chip">Level 3</span>
+                    </div>
+                    <div class="tt-badges-row">
+                        <div class="tt-badge-card"><span>📄</span>
+                            <p>Profile 90%+ Complete</p>
+                        </div>
+                        <div class="tt-badge-card"><span>🚀</span>
+                            <p>Applied to 10 Jobs</p>
+                        </div>
+                        <div class="tt-badge-card"><span>🤝</span>
+                            <p>3 Interviews Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs + Interview Room + A+ -->
+            <div class="tt-grid tt-grid-3">
+                <div class="tt-card tt-card-jobs">
+                    <div class="tt-card-header">
+                        <h3>Recommended Jobs</h3>
+                        <a href="../../jobs.html" class="tt-link">View all</a>
+                    </div>
+                    <ul class="tt-list">
+                        <li>
+                            <div>
+                                <strong>Junior Software Developer</strong>
+                                <p>NovaTech Labs · Johannesburg · Hybrid</p>
+                            </div>
+                            <button class="tt-btn tt-btn-sm tt-btn-secondary">Apply</button>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Graduate Engineer</strong>
+                                <p>FutureEnergy · Secunda · On-site</p>
+                            </div>
+                            <button class="tt-btn tt-btn-sm tt-btn-secondary">Apply</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tt-card tt-card-jobs">
+                    <div class="tt-card-header">
+                        <h3>Upcoming Interviews</h3>
+                        <a href="../../interview-room.html?view=candidate" class="tt-link">Open Interview Room →</a>
+                    </div>
+                    <ul class="tt-list">
+                        <li>
+                            <div>
+                                <strong>PixelForge Studio</strong>
+                                <p>UI/UX Intern · Tomorrow · 10:00</p>
+                            </div>
+                            <span class="tt-chip tt-chip-success">Confirmed</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>InsightWorks</strong>
+                                <p>Data Analyst Intern · Friday · 14:30</p>
+                            </div>
+                            <span class="tt-chip">Pending</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tt-card tt-card-academy">
+                    <div class="tt-card-header">
+                        <h3>A+ Student Academy</h3>
+                        <span class="tt-chip tt-chip-locked">Locked</span>
+                    </div>
+                    <p>Unlock premium courses from Cisco, Coursera, Google & more to boost your ranking.</p>
+                    <button class="tt-btn tt-btn-primary tt-btn-sm">Upgrade to Premium</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right"><span>🔗</span><span>🐦</span><span>📷</span></div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>
+``
