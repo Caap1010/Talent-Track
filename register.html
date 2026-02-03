@@ -5,15 +5,14 @@
     <meta charset="UTF-8" />
     <title>TalentTrack – Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
+    css/styles.css
 </head>
 
 <body data-theme="dark">
-
     <!-- HEADER -->
     <header class="tt-header">
         <div class="tt-header-left">
-            <img src="img/logo.png" alt="logo" class="tt-logo" />
+            img/logo.png
             <span class="tt-brand-name">TALENTTRACK</span>
         </div>
 
@@ -21,7 +20,7 @@
             <a href="index.html">Home</a>
             <a href="jobs.html">Jobs</a>
             <a href="freelance.html">Freelance</a>
-            <button id="themeToggle" type="button" class="tt-theme-toggle" aria-label="Toggle theme">🌙</button>
+            <button id="themeToggle" type="button" class="tt-theme-toggle">🌙</button>
         </nav>
     </header>
 
@@ -62,79 +61,65 @@
 
                     <!-- EXTENDED PROFILE -->
                     <hr class="tt-divider" />
-
                     <p class="tt-auth-subtitle">Profile Information</p>
 
                     <label>Professional Headline
-                        <input id="profHeadline" type="text" placeholder="Junior Data Analyst" />
+                        <input id="profHeadline" type="text" />
                     </label>
 
                     <label>Professional Summary
-                        <input id="profSummary" type="text" placeholder="Short background summary" />
+                        <input id="profSummary" type="text" />
                     </label>
 
                     <label>Contact Number
-                        <input id="contactNumber" type="text" placeholder="+27 82 123 4567" />
+                        <input id="contactNumber" type="text" />
                     </label>
 
                     <label>Your Role
-                        <input id="yourRole" type="text" placeholder="Team Lead, Researcher, Intern" />
+                        <input id="yourRole" type="text" />
                     </label>
 
                     <label>Description of Work
-                        <input id="descWork" type="text" placeholder="Describe your tasks and results" />
+                        <input id="descWork" type="text" />
                     </label>
 
                     <label>Top 3 Strengths
-                        <input id="strengths" type="text" placeholder="Leadership, Problem Solving, Creativity" />
+                        <input id="strengths" type="text" />
                     </label>
 
-                    <label>Upload Your Current CV (PDF/Docs/Images/Media, ≤100MB)
+                    <label>Upload CV
                         <input id="cvFile" type="file"
                             accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg,.gif,.mp4,.mp3,.wav" />
                     </label>
 
                     <label class="tt-terms">
                         <input id="terms" type="checkbox" required />
-                        <span>I agree to the <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a></span>
+                        <span>I agree to the Terms & Privacy Policy</span>
                     </label>
 
                     <button type="submit" class="tt-btn tt-btn-primary tt-auth-submit">
                         Create Account
                     </button>
+
                 </form>
 
             </div>
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="tt-footer">
         <div class="tt-footer-left">
             <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-        </div>
-        <div class="tt-footer-right">
-            <span>🔗</span><span>🐦</span><span>📷</span>
         </div>
     </footer>
 
-    <!-- GLOBAL SCRIPTS -->
     <script src="js/main.js"></script>
 
-    <!-- PAGE LOGIC -->
     <script>
         (function () {
 
-            const PROFILE_KEY = "TT_PROFILE";
-            const CV_KEY = "TT_CV_FILE";
-
             let selectedRole = "candidate";
 
-            // ROLE SELECTION
             document.querySelectorAll(".tt-role").forEach(btn => {
                 btn.addEventListener("click", () => {
                     document.querySelectorAll(".tt-role").forEach(b => b.classList.remove("tt-role--active"));
@@ -143,97 +128,19 @@
                 });
             });
 
-            // Set footer year (safe even if main.js also sets it)
-            const yearEl = document.getElementById("year");
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-            // FORM SUBMIT
-            const form = document.getElementById("registerForm");
-            form.addEventListener("submit", (e) => {
+            document.getElementById("registerForm").addEventListener("submit", function (e) {
                 e.preventDefault();
 
-                const fullName = document.getElementById("fullName").value.trim();
-                const email = document.getElementById("email").value.trim();
-                const pwd = document.getElementById("password").value;
-                const pwd2 = document.getElementById("confirmPassword").value;
-
-                if (!fullName || !email || !pwd) return alert("Fill all required fields.");
-                if (pwd !== pwd2) return alert("Passwords do not match.");
-                if (!document.getElementById("terms").checked)
-                    return alert("Please accept Terms & Privacy Policy.");
-
-                // EXTENDED PROFILE
-                const profile = {
-                    Full_Name: fullName,
-                    Email_Address: email,
-                    Professional_Headline: document.getElementById("profHeadline").value.trim(),
-                    Professional_Summary: document.getElementById("profSummary").value.trim(),
-                    Contact_Number: document.getElementById("contactNumber").value.trim(),
-                    Your_Role: document.getElementById("yourRole").value.trim(),
-                    Description_of_Work: document.getElementById("descWork").value.trim(),
-                    Strengths: document.getElementById("strengths").value.trim()
-                };
-
-                localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
-                localStorage.setItem("TT_USER_NAME", fullName);
                 localStorage.setItem("TT_USER_ROLE", selectedRole);
 
-                // HANDLE CV
-                const file = document.getElementById("cvFile").files[0];
-                if (file) {
-                    if (file.size > 100 * 1024 * 1024) return alert("File too large (100MB max).");
-
-                    // MIME types that browsers commonly report
-                    const allowedMime = [
-                        "application/pdf",
-                        "application/msword",
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        "application/vnd.ms-excel",
-                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                        "application/vnd.ms-powerpoint",
-                        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                        "image/png",
-                        "image/jpeg",
-                        "image/gif",
-                        "video/mp4",
-                        "audio/mpeg",   // .mp3
-                        "audio/wav",    // .wav
-                        "audio/wave",
-                        "audio/x-wav"
-                    ];
-
-                    // Some browsers may not set file.type; fallback to extension check
-                    const nameLower = file.name.toLowerCase();
-                    const allowedExt = [
-                        ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
-                        ".png", ".jpg", ".jpeg", ".gif", ".mp4", ".mp3", ".wav"
-                    ];
-
-                    const typeOk = file.type ? allowedMime.includes(file.type) :
-                        allowedExt.some(ext => nameLower.endsWith(ext));
-
-                    if (!typeOk) return alert("Unsupported file type.");
-
-                    const url = URL.createObjectURL(file);
-                    localStorage.setItem(CV_KEY, url);
+                // FIXED REDIRECT PATHS
+                if (selectedRole === "company" || selectedRole === "recruiter") {
+                    window.location.href = "dashboard/company/company.html";
+                } else if (selectedRole === "freelancer") {
+                    window.location.href = "dashboard/freelancer/freelancer.html";
+                } else {
+                    window.location.href = "dashboard/candidate/candidate.html";
                 }
-
-                // REDIRECT BASED ON ROLE
-                let path = "";
-                switch (selectedRole) {
-                    case "company":
-                    case "recruiter":
-                        path = "dashboard/company.html";
-                        localStorage.setItem("TT_COMPANY_NAME", fullName);
-                        break;
-                    case "freelancer":
-                        path = "dashboard/freelancer.html";
-                        break;
-                    default:
-                        path = "dashboard/candidate.html";
-                }
-
-                window.location.href = path;
             });
 
         })();

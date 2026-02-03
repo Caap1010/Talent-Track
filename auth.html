@@ -9,19 +9,19 @@
 </head>
 
 <body data-theme="dark">
+
   <!-- HEADER -->
   <header class="tt-header">
     <div class="tt-header-left">
       <img src="img/logo.png" alt="TalentTrack logo" class="tt-logo" />
       <span class="tt-brand-name">TALENTTRACK</span>
     </div>
+
     <nav class="tt-nav">
-      <a href="index.html">Home</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="freelance.html">Freelance</a>
-      <a href="auth.html">Login</a>
+      th.htmlLogin</a>
       <a href="register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
     </nav>
+
     <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
   </header>
 
@@ -32,24 +32,25 @@
         <h1>Welcome to TalentTrack</h1>
         <p class="tt-auth-subtitle">Choose your role and get started.</p>
 
+        <!-- ROLE SELECTOR -->
         <div class="tt-role-selector">
-          <button class="tt-role tt-role--active">Candidate</button>
-          <button class="tt-role">Freelancer</button>
-          <button class="tt-role">Company</button>
-          <button class="tt-role">Recruiter</button>
+          <button class="tt-role tt-role--active" data-role="candidate">Candidate</button>
+          <button class="tt-role" data-role="freelancer">Freelancer</button>
+          <button class="tt-role" data-role="company">Company</button>
+          <button class="tt-role" data-role="recruiter">Recruiter</button>
         </div>
 
-        <form class="tt-auth-form">
-          <label>
-            Email
-            <input type="email" placeholder="you@example.com" required />
+        <!-- LOGIN FORM -->
+        <form id="loginForm" class="tt-auth-form">
+          <label>Email
+            <input id="loginEmail" type="email" placeholder="you@example.com" required />
           </label>
-          <label>
-            Password
-            <input type="password" placeholder="••••••••" required />
+
+          <label>Password
+            <input id="loginPassword" type="password" placeholder="••••••••" required />
           </label>
-          <!-- Demo route; replace with real auth later -->
-          <a href="dashboard/candidate.html" class="tt-btn tt-btn-primary tt-auth-submit">Login</a>
+
+          <button type="submit" class="tt-btn tt-btn-primary tt-auth-submit">Login</button>
         </form>
 
         <div class="tt-auth-alt">
@@ -58,6 +59,7 @@
             <button class="tt-btn tt-btn-secondary">Google</button>
             <button class="tt-btn tt-btn-secondary">LinkedIn</button>
           </div>
+
           <p class="tt-auth-switch">
             New to TalentTrack?
             <a href="register.html">Create an account</a>
@@ -67,79 +69,50 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="tt-footer">
     <div class="tt-footer-left">
       <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="#privacy">Privacy Policy</a>
-      <a href="#terms">Terms</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
     </div>
   </footer>
 
+  <!-- LOGIN LOGIC -->
+  <script>
+    const roles = document.querySelectorAll(".tt-role");
+    let selectedRole = "candidate";
+
+    roles.forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelector(".tt-role--active")?.classList.remove("tt-role--active");
+        btn.classList.add("tt-role--active");
+        selectedRole = btn.dataset.role;
+      });
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Save fake session
+      localStorage.setItem("TT_USER_ROLE", selectedRole);
+      localStorage.setItem("TT_USER_NAME", "User");
+
+      // REDIRECT BASED ON ROLE (FIXED PATHS)
+      if (selectedRole === "company" || selectedRole === "recruiter") {
+        window.location.href = "dashboard/company/company.html";
+      } else if (selectedRole === "freelancer") {
+        window.location.href = "dashboard/freelancer/freelancer.html";
+      } else {
+        window.location.href = "dashboard/candidate/candidate.html";
+      }
+    });
+  </script>
+
   <script src="js/main.js"></script>
+
 </body>
 
 </html>
-/* ============================================
-GLOBAL HEADER LOGIN / SIGNOUT (all pages)
-============================================ */
-(function () {
-const nav = document.querySelector(".tt-nav");
-if (!nav) return;
-
-const role = localStorage.getItem("TT_USER_ROLE");
-const name = localStorage.getItem("TT_USER_NAME");
-
-// Decide the relative prefix based on where we are
-const path = location.pathname.replace(/\\/g, "/");
-let P = "";
-if (
-path.includes("/dashboard/company/") ||
-path.includes("/dashboard/candidate/") ||
-path.includes("/dashboard/freelancer/")
-) {
-P = "../../";
-} else if (path.includes("/dashboard/")) {
-P = "../";
-} else {
-P = "";
-}
-
-const dashboardFor = (r) =>
-r === "company" || r === "recruiter" ? `${P}dashboard/company/company.html` :
-r === "freelancer" ? `${P}dashboard/freelancer/freelancer.html`
-: `${P}dashboard/candidate/candidate.html`;
-
-// Not logged in → show Login + Sign Up
-if (!role || !name) {
-nav.innerHTML = `
-<a href="${P}index.html">Home</a>
-<a href="${P}jobs.html">Jobs</a>
-<a href="${P}freelance.html">Freelance</a>
-<a href="${P}auth.html">Login</a>
-<a href="${P}register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
-`;
-return;
-}
-
-// Logged in → show Dashboard + Sign Out
-const dash = dashboardFor(role);
-nav.innerHTML = `
-<a href="${P}index.html">Home</a>
-<a href="${P}jobs.html">Jobs</a>
-<a href="${P}freelance.html">Freelance</a>
-<a href="${dash}">Dashboard</a>
-<a id="ttSignOut" class="tt-btn tt-btn-sm tt-btn-danger" style="cursor:pointer;">Sign Out</a>
-`;
-
-const logout = document.getElementById("ttSignOut");
-if (logout) {
-logout.addEventListener("click", () => {
-localStorage.removeItem("TT_USER_ROLE");
-localStorage.removeItem("TT_USER_NAME");
-localStorage.removeItem("TT_COMPANY_NAME");
-window.location.href = P + "auth.html";
-});
-}
-})();
