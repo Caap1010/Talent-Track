@@ -561,6 +561,65 @@ if (document.getElementById("successRateChart") && typeof Chart !== "undefined")
     renderTable();
 })();
 
+/* --------------------------------------------
+   Gamification / Wallet helpers
+-------------------------------------------- */
+function awardXP(amount) {
+    const current = parseInt(localStorage.getItem('TT_XP') || '0', 10);
+    localStorage.setItem('TT_XP', String(current + Number(amount)));
+}
+
+function awardCompanyCredits(amount) {
+    const current = parseInt(localStorage.getItem('TT_COMPANY_CREDITS') || '0', 10);
+    localStorage.setItem('TT_COMPANY_CREDITS', String(current + Number(amount)));
+}
+
+function getXP() { return parseInt(localStorage.getItem('TT_XP') || '0', 10); }
+function getCompanyCredits() { return parseInt(localStorage.getItem('TT_COMPANY_CREDITS') || '0', 10); }
+
+/* Render dynamic company posts into jobs listing on public jobs page */
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const jobsList = document.querySelector('.tt-jobs-list');
+        const posts = JSON.parse(localStorage.getItem('TT_POSTS') || '[]');
+        if (jobsList && posts.length) {
+            posts.slice().reverse().forEach((p, idx) => {
+                const art = document.createElement('article');
+                art.className = 'tt-job-result';
+                art.innerHTML = `
+                    <div>
+                        <h3>${p.title}</h3>
+                        <p class="tt-job-meta">${p.location || ''}</p>
+                        <p class="tt-job-tags"><span class="tt-chip">${p.type || 'Job'}</span></p>
+                    </div>
+                    <div class="tt-job-actions">
+                        <p class="tt-job-posted">Posted ${new Date(p.date).toLocaleDateString()}</p>
+                        <a class="tt-btn tt-btn-primary tt-btn-sm tt-apply-post" href="#" data-post-idx="${idx}">Apply</a>
+                    </div>
+                `;
+                jobsList.appendChild(art);
+            });
+        }
+
+        // attach handler for dynamic post apply links
+        document.querySelectorAll('.tt-apply-post').forEach(a => {
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                const role = localStorage.getItem('TT_USER_ROLE');
+                if (!role) return window.location.href = 'auth.html';
+                const idx = parseInt(a.getAttribute('data-post-idx'), 10);
+                const posts = JSON.parse(localStorage.getItem('TT_POSTS') || '[]');
+                const p = posts[posts.length - 1 - idx] || posts[0];
+                const apps = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
+                apps.push({ title: p.title, date: new Date().toISOString(), user: localStorage.getItem('TT_USER_NAME') || '' });
+                localStorage.setItem('TT_APPLICATIONS', JSON.stringify(apps));
+                awardXP(10);
+                alert('Application submitted for: ' + p.title + '\nYou earned 10 XP!');
+            });
+        });
+    } catch (err) { /* ignore */ }
+});
+
 /* ============================================
    SIMPLE APPLY / POST-JOB HANDLERS
    - Intercept 'Apply' links that currently point to auth.html and
@@ -1027,26 +1086,28 @@ if (document.getElementById("successRateChart") && typeof Chart !== "undefined")
             r === "freelancer" ? `${P}dashboard/freelancer/freelancer.html`
                 : `${P}dashboard/candidate/candidate.html`;
 
-    // Not logged in → show Login + Sign Up
-    if (!role || !name) {
-        nav.innerHTML = `
-      <a href="${P}index.html">Home</a>
-      <a href="${P}jobs.html">Jobs</a>
-      <a href="${P}freelance.html">Freelance</a>
-      <a href="${P}auth.html">Login</a>
-      <a href="${P}register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
-    `;
-        return;
-    }
+        // Not logged in → show Login + Sign Up
+        if (!role || !name) {
+                nav.innerHTML = `
+            <a href="${P}index.html">Home</a>
+            <a href="${P}jobs.html">Jobs</a>
+            <a href="${P}freelance.html">Freelance</a>
+            <a href="${P}auth.html">Login</a>
+            <a href="${P}register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        `;
+                return;
+        }
 
-    // Logged in → show Dashboard + Sign Out
-    nav.innerHTML = `
-    <a href="${P}index.html">Home</a>
-    <a href="${P}jobs.html">Jobs</a>
-    <a href="${P}freelance.html">Freelance</a>
-    <a href="${dashboardFor(role)}">Dashboard</a>
-    <a id="ttSignOut" class="tt-btn tt-btn-sm tt-btn-danger" role="button">Sign Out</a>
-  `;
+        // Logged in → show Dashboard + Sign Out + user name
+        const displayName = name.length > 20 ? name.slice(0, 17) + '...' : name;
+        nav.innerHTML = `
+        <a href="${P}index.html">Home</a>
+        <a href="${P}jobs.html">Jobs</a>
+        <a href="${P}freelance.html">Freelance</a>
+        <a href="${dashboardFor(role)}">Dashboard</a>
+        <span class="tt-nav-user">Hello, ${displayName}</span>
+        <a id="ttSignOut" class="tt-btn tt-btn-sm tt-btn-danger" role="button">Sign Out</a>
+    `;
 
     const btn = document.getElementById("ttSignOut");
     if (btn) {

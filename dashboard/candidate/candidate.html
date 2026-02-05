@@ -74,6 +74,11 @@
                     <strong>9</strong>
                     <span class="tt-stat-trend up">+3 this month</span>
                 </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Net Worth</span>
+                    <strong id="ttNetWorth">R0</strong>
+                    <span class="tt-stat-trend">XP: <span id="ttXPVal">0</span></span>
+                </div>
             </div>
 
             <!-- Challenge + Badges -->
@@ -190,6 +195,22 @@
     </footer>
 
     <script src="../../js/main.js"></script>
+    <script>
+        (function () {
+            function renderNetWorth() {
+                const xp = parseInt(localStorage.getItem('TT_XP') || '0', 10);
+                const credits = parseInt(localStorage.getItem('TT_COMPANY_CREDITS') || '0', 10);
+                const net = (xp * 2) + (credits * 10); // arbitrary conversion for demo
+                const el = document.getElementById('ttNetWorth');
+                const xpEl = document.getElementById('ttXPVal');
+                if (el) el.textContent = 'R' + net.toLocaleString();
+                if (xpEl) xpEl.textContent = xp;
+            }
+            renderNetWorth();
+            // update when storage changes (same window)
+            window.addEventListener('storage', renderNetWorth);
+        })();
+    </script>
 </body>
 
 </html>

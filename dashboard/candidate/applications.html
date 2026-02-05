@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Applications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <main class="tt-dashboard">
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar">SQ</div>
+                <div>
+                    <h2>My Applications</h2>
+                    <p>Track your job applications</p>
+                </div>
+            </div>
+            <nav class="tt-sidebar-nav">
+                <a href="candidate.html">🏠 Home</a>
+                <a href="applications.html" class="active">📨 Applications</a>
+                <a href="me.html">👤 Me</a>
+                <a href="academy.html">🎓 Academy</a>
+            </nav>
+        </aside>
+
+        <section class="tt-dashboard-main">
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Your Applications</h3>
+                    <span class="tt-chip">Local</span>
+                </div>
+                <div class="tt-card-section">
+                    <ul id="ttApplicationsPageList" class="tt-list">
+                        <li class="tt-muted">No applications yet.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right"><span>🔗</span><span>🐦</span><span>📷</span></div>
+    </footer>
+
+    <script>
+        (function () {
+            function renderApps() {
+                const list = document.getElementById('ttApplicationsPageList');
+                const apps = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
+                if (!apps.length) {
+                    list.innerHTML = '<li class="tt-muted">No applications yet.</li>';
+                    return;
+                }
+                list.innerHTML = '';
+                apps.slice().reverse().forEach(a => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<div><strong>${a.title}</strong><p class="tt-job-meta">Applied: ${new Date(a.date).toLocaleString()}</p></div>`;
+                    list.appendChild(li);
+                });
+            }
+            renderApps();
+        })();
+    </script>
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>
