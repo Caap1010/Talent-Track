@@ -67,12 +67,31 @@
                         <p>On‑time Delivery</p>
                     </div>
                 </div>
-                <div class="tt-card-section" style="margin-top:12px;">
-                    <h4>Details</h4>
-                    <p>Name: Sfiso Quintin Tshotwane</p>
-                    <p>Category: Frontend · UI/UX</p>
-                    <p>Location: Johannesburg, South Africa</p>
-                    <p>Skills: React, JavaScript, Tailwind, Figma</p>
+                <div class="tt-card-section" style="margin-top:12px;" id="ttFreelancerProfile">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <h4>Details</h4>
+                        <div>
+                            <button id="editFreelancerBtn" class="tt-btn tt-btn-secondary tt-btn-sm">Edit</button>
+                        </div>
+                    </div>
+                    <div id="ttFreelancerDisplay">
+                        <p id="frName">Name: Sfiso Quintin Tshotwane</p>
+                        <p id="frCategory">Category: Frontend · UI/UX</p>
+                        <p id="frLocation">Location: Johannesburg, South Africa</p>
+                        <p id="frSkills">Skills: React, JavaScript, Tailwind, Figma</p>
+                    </div>
+
+                    <form id="ttFreelancerForm" style="display:none;margin-top:8px;">
+                        <label>Full name<br /><input id="frNameInput" type="text" /></label><br />
+                        <label>Category<br /><input id="frCategoryInput" type="text" /></label><br />
+                        <label>Location<br /><input id="frLocationInput" type="text" /></label><br />
+                        <label>Skills (comma separated)<br /><input id="frSkillsInput" type="text" /></label><br />
+                        <div style="margin-top:8px;">
+                            <button id="saveFreelancerBtn" class="tt-btn tt-btn-primary tt-btn-sm">Save</button>
+                            <button id="cancelFreelancerBtn" type="button"
+                                class="tt-btn tt-btn-ghost tt-btn-sm">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -88,6 +107,53 @@
     </footer>
 
     <script src="../../js/main.js"></script>
+
+    <script>
+        (function () {
+            const form = document.getElementById('ttFreelancerForm');
+            const display = document.getElementById('ttFreelancerDisplay');
+            const editBtn = document.getElementById('editFreelancerBtn');
+            const saveBtn = document.getElementById('saveFreelancerBtn');
+            const cancelBtn = document.getElementById('cancelFreelancerBtn');
+            const inputs = {
+                name: document.getElementById('frNameInput'),
+                category: document.getElementById('frCategoryInput'),
+                location: document.getElementById('frLocationInput'),
+                skills: document.getElementById('frSkillsInput')
+            };
+
+            function loadProfile() {
+                const p = JSON.parse(localStorage.getItem('TT_PROFILE') || '{}');
+                document.getElementById('frName').textContent = 'Name: ' + (p.Full_Name || '—');
+                document.getElementById('frCategory').textContent = 'Category: ' + (p.Your_Role || '—');
+                document.getElementById('frLocation').textContent = 'Location: ' + (p.Location || '—');
+                document.getElementById('frSkills').textContent = 'Skills: ' + (p.Strengths || '—');
+
+                inputs.name.value = p.Full_Name || '';
+                inputs.category.value = p.Your_Role || '';
+                inputs.location.value = p.Location || '';
+                inputs.skills.value = p.Strengths || '';
+            }
+
+            if (editBtn) editBtn.addEventListener('click', () => { display.style.display = 'none'; form.style.display = 'block'; });
+            if (cancelBtn) cancelBtn.addEventListener('click', () => { form.style.display = 'none'; display.style.display = 'block'; });
+            if (saveBtn) saveBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const obj = {
+                    Full_Name: inputs.name.value.trim(),
+                    Your_Role: inputs.category.value.trim(),
+                    Location: inputs.location.value.trim(),
+                    Strengths: inputs.skills.value.trim()
+                };
+                localStorage.setItem('TT_PROFILE', JSON.stringify(obj));
+                loadProfile();
+                form.style.display = 'none';
+                display.style.display = 'block';
+            });
+
+            loadProfile();
+        })();
+    </script>
 </body>
 
 </html>

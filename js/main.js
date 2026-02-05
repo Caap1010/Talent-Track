@@ -617,6 +617,55 @@ if (document.getElementById("successRateChart") && typeof Chart !== "undefined")
     });
 })();
 
+// Also handle plain buttons that say "Apply" (candidate dashboard uses buttons)
+(function () {
+    document.querySelectorAll('button').forEach(btn => {
+        try {
+            if ((btn.textContent || '').trim().toLowerCase() === 'apply') {
+                btn.addEventListener('click', function (e) {
+                    const role = localStorage.getItem('TT_USER_ROLE');
+                    if (!role) {
+                        // Not logged in — redirect to auth
+                        window.location.href = 'auth.html';
+                        return;
+                    }
+                    // Collect job title (nearby h3 or strong)
+                    const jobCard = btn.closest('.tt-job-result') || btn.closest('li');
+                    const titleEl = jobCard ? (jobCard.querySelector('h3') || jobCard.querySelector('strong')) : null;
+                    const title = titleEl ? titleEl.textContent.trim() : 'Job';
+                    const apps = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
+                    apps.push({ title, date: new Date().toISOString(), user: localStorage.getItem('TT_USER_NAME') || '' });
+                    localStorage.setItem('TT_APPLICATIONS', JSON.stringify(apps));
+                    alert('Application submitted for: ' + title);
+                    // If on candidate dashboard, trigger render
+                    const list = document.getElementById('ttApplicationsList');
+                    if (list) renderApplications(list);
+                });
+            }
+        } catch (err) { }
+    });
+
+    function renderApplications(listEl) {
+        const apps = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
+        if (!apps.length) {
+            listEl.innerHTML = '<li class="tt-muted">No applications yet.</li>';
+            return;
+        }
+        listEl.innerHTML = '';
+        apps.slice().reverse().forEach(a => {
+            const li = document.createElement('li');
+            li.innerHTML = `<div><strong>${a.title}</strong><p class="tt-job-meta">Applied: ${new Date(a.date).toLocaleString()}</p></div>`;
+            listEl.appendChild(li);
+        });
+    }
+
+    // Auto-render on candidate dashboard
+    document.addEventListener('DOMContentLoaded', () => {
+        const list = document.getElementById('ttApplicationsList');
+        if (list) renderApplications(list);
+    });
+})();
+
 /* ============================================
    MESSAGING UI LOGIC
    ============================================ */

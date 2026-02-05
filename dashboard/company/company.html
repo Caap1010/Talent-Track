@@ -127,6 +127,30 @@
             <!-- SHORTLIST + RANKING + SAVED CVS -->
             <div class="tt-grid tt-grid-3">
 
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Post a Job</h3>
+                        <span class="tt-chip">New</span>
+                    </div>
+                    <div class="tt-card-section">
+                        <form id="ttPostJobForm">
+                            <label>Job Title<br /><input id="postJobTitle" type="text" required /></label><br />
+                            <label>Location<br /><input id="postJobLocation" type="text" /></label><br />
+                            <label>Type<br /><input id="postJobType" type="text"
+                                    placeholder="Full-time / Freelance" /></label><br />
+                            <div style="margin-top:8px;">
+                                <button class="tt-btn tt-btn-primary tt-btn-sm">Post Job</button>
+                            </div>
+                        </form>
+                        <div style="margin-top:8px;">
+                            <h4>Recent Posts</h4>
+                            <ul id="ttCompanyPosts" class="tt-list">
+                                <li class="tt-muted">No posts yet.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="tt-card tt-card-jobs">
                     <div class="tt-card-header">
                         <h3>Shortlist for Future Roles</h3>
@@ -232,6 +256,45 @@
                     });
                 }
             }
+        })();
+    </script>
+
+    <script>
+        (function () {
+            const form = document.getElementById('ttPostJobForm');
+            const list = document.getElementById('ttCompanyPosts');
+
+            function renderPosts() {
+                const posts = JSON.parse(localStorage.getItem('TT_POSTS') || '[]');
+                if (!posts.length) {
+                    list.innerHTML = '<li class="tt-muted">No posts yet.</li>';
+                    return;
+                }
+                list.innerHTML = '';
+                posts.slice().reverse().forEach(p => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<div><strong>${p.title}</strong><p class="tt-job-meta">${p.location} · ${p.type} · Posted ${new Date(p.date).toLocaleDateString()}</p></div>`;
+                    list.appendChild(li);
+                });
+            }
+
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const title = document.getElementById('postJobTitle').value.trim();
+                    const location = document.getElementById('postJobLocation').value.trim();
+                    const type = document.getElementById('postJobType').value.trim();
+                    if (!title) return alert('Please enter a job title.');
+                    const posts = JSON.parse(localStorage.getItem('TT_POSTS') || '[]');
+                    posts.push({ title, location, type, date: new Date().toISOString() });
+                    localStorage.setItem('TT_POSTS', JSON.stringify(posts));
+                    renderPosts();
+                    form.reset();
+                    alert('Job posted locally.');
+                });
+            }
+
+            renderPosts();
         })();
     </script>
 
