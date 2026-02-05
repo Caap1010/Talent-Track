@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Wealth & Economics Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-theme="dark">
+
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+
+        <nav class="tt-nav">
+            <a href="index.html">Home</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="freelance.html">Freelance</a>
+            <a href="leaderboard.html">🏆 Leaderboard</a>
+            <a href="auth.html">Login</a>
+            <a href="register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN -->
+    <main style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+
+        <!-- PAGE TITLE -->
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">💰 Wealth & Economics Guide</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Understand TalentTrack's gamified economy</p>
+        </div>
+
+        <!-- SECTION 1: WEALTH COMPONENTS -->
+        <div class="tt-card" style="margin-bottom: 30px;">
+            <div class="tt-card-header">
+                <h2>Wealth Components</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 20px 0;">
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 12px;">💪 Experience Points (XP)</h3>
+                    <p style="color: var(--text-muted); line-height: 1.6;">
+                        XP represents your professional experience and engagement on TalentTrack. Earn XP by applying for jobs, completing courses, and hitting milestones.
+                    </p>
+                    <p style="margin-top: 10px; color: var(--text); font-weight: 600;">Base Value: XP × 2 = R wealth</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--success); margin-bottom: 12px;">💳 Credits</h3>
+                    <p style="color: var(--text-muted); line-height: 1.6;">
+                        Credits are the platform currency earned by companies posting jobs and users completing tasks. They're essential for platform transactions.
+                    </p>
+                    <p style="margin-top: 10px; color: var(--text); font-weight: 600;">Base Value: Credits × 10 = R wealth</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: NET WORTH CALCULATION -->
+        <div class="tt-card" style="margin-bottom: 30px; background: linear-gradient(135deg, rgba(29, 78, 216, 0.1), rgba(16, 185, 129, 0.1));">
+            <div class="tt-card-header">
+                <h2>Net Worth Formula (with Tier Multipliers)</h2>
+            </div>
+            <div style="padding: 20px; font-family: monospace; background: var(--bg-secondary); border-radius: 8px; margin: 15px 0;">
+                <p style="color: var(--primary); margin: 5px 0;"><strong>Net Worth = (XP Wealth × XP Tier Multiplier) + (Credits Wealth × Credits Tier Multiplier)</strong></p>
+                <p style="color: var(--text-muted); margin: 10px 0; font-size: 0.9rem;">Where:</p>
+                <p style="color: var(--text-muted); margin: 3px 0; font-size: 0.9rem;">• XP Wealth = XP × 2</p>
+                <p style="color: var(--text-muted); margin: 3px 0; font-size: 0.9rem;">• Credits Wealth = Credits × 10</p>
+                <p style="color: var(--text-muted); margin: 3px 0; font-size: 0.9rem;">• Tier Multipliers apply based on your achievement level</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3: TIER SYSTEM -->
+        <div class="tt-card" style="margin-bottom: 30px;">
+            <div class="tt-card-header">
+                <h2>Tier Progression System</h2>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <h3 style="color: var(--text); margin-bottom: 15px;">🥉 XP Tiers</h3>
+                <div style="display: grid; gap: 12px;">
+                    <div style="display: grid; grid-template-columns: 100px 1fr 150px; gap: 15px; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 6px;">
+                        <strong style="color: #8b8b8b;">🥇 Bronze</strong>
+                        <span style="color: var(--text-muted);">0 – 149 XP</span>
+                        <span style="text-align: right; color: var(--text); font-weight: 600;">1.0× (Base)</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr 150px; gap: 15px; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 6px;">
+                        <strong style="color: #c0c0c0;">🥈 Silver</strong>
+                        <span style="color: var(--text-muted);">150 – 299 XP</span>
+                        <span style="text-align: right; color: #c0c0c0; font-weight: 600;">1.15× (+15%)</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr 150px; gap: 15px; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 6px;">
+                        <strong style="color: #ffd700;">🥇 Gold</strong>
+                        <span style="color: var(--text-muted);">300 – 499 XP</span>
+                        <span style="text-align: right; color: #ffd700; font-weight: 600;">1.3× (+30%)</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr 150px; gap: 15px; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 6px;">
+                        <strong style="color: #e5e4e2;">💎 Platinum</strong>
+                        <span style="color: var(--text-muted);">500+ XP</span>
+                        <span style="text-align: right; color: #e5e4e2; font-weight: 600;">1.5× (+50%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 25px 0;">
+                <h3 style="color: var(--text); margin-bottom: 15px;">💳 Credits Tiers</h3>
+                <div style="display: grid; gap: 12px;">
+                    <div style="display: grid; grid-template-columns: 100px 1fr 150px; gap: 15px; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 6px;">
+                        <strong style="color: #8b8b8b;">Bronze</strong>
+                        <span style="color: var(--text-muted);">0 – 99 CR</span>
+                        <span style="text-align: right; color: var(--text); font-weight: 600;">1.0× (Base)</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr 150px; gap: 15px; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 6px;">
+                        <strong style="color: #c0c0c0;">Silver</strong>
+                        <span style="color: var(--text-muted);">100 – 249 CR</span>
+                        <span style="text-align: right; color: #c0c0c0; font-weight: 600;">1.1× (+10%)</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr 150px; gap: 15px; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 6px;">
+                        <strong style="color: #ffd700;">Gold</strong>
+                        <span style="color: var(--text-muted);">250 – 499 CR</span>
+                        <span style="text-align: right; color: #ffd700; font-weight: 600;">1.25× (+25%)</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 100px 1fr 150px; gap: 15px; align-items: center; padding: 12px; background: var(--bg-secondary); border-radius: 6px;">
+                        <strong style="color: #e5e4e2;">Platinum</strong>
+                        <span style="color: var(--text-muted);">500+ CR</span>
+                        <span style="text-align: right; color: #e5e4e2; font-weight: 600;">1.4× (+40%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: XP EARNING -->
+        <div class="tt-card" style="margin-bottom: 30px;">
+            <div class="tt-card-header">
+                <h2>How to Earn XP</h2>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <span>✅ Apply for a job</span>
+                    <strong style="color: var(--success);">+10 XP</strong>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <span>🎓 Complete a course (Basics)</span>
+                    <strong style="color: var(--success);">+15 XP</strong>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <span>🎓 Complete a course (Advanced)</span>
+                    <strong style="color: var(--success);">+20 XP</strong>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <span>👤 Complete your profile</span>
+                    <strong style="color: var(--success);">+10 XP</strong>
+                </li>
+                <li style="padding: 12px 0; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🔥 Complete daily challenge</span>
+                    <strong style="color: var(--success);">+35 XP</strong>
+                </li>
+            </ul>
+        </div>
+
+        <!-- SECTION 5: CREDITS EARNING -->
+        <div class="tt-card" style="margin-bottom: 30px;">
+            <div class="tt-card-header">
+                <h2>How to Earn Credits</h2>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <span>📝 Post a job listing (Company)</span>
+                    <strong style="color: var(--success);">+50 CR</strong>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <span>✍️ Write a recommendation</span>
+                    <strong style="color: var(--success);">+5 CR</strong>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <span>🎯 Hit weekly milestone</span>
+                    <strong style="color: var(--success);">+25 CR</strong>
+                </li>
+                <li style="padding: 12px 0; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🏆 Reach leaderboard top 10</span>
+                    <strong style="color: var(--success);">+100 CR</strong>
+                </li>
+            </ul>
+        </div>
+
+        <!-- SECTION 6: EXAMPLE CALCULATION -->
+        <div class="tt-card" style="margin-bottom: 30px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(10, 179, 156, 0.05));">
+            <div class="tt-card-header">
+                <h2>📊 Example: Calculate Your Net Worth</h2>
+            </div>
+            <div style="padding: 20px 0;">
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Let's say you have <strong>350 XP</strong> and <strong>200 Credits</strong>. Here's how your wealth is calculated:</p>
+
+                <div style="background: var(--bg-secondary); padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--primary); margin-bottom: 12px;">Step 1: Determine Your Tiers</h4>
+                    <p style="color: var(--text-muted);">• XP: 350 → <strong>Gold tier (1.3×)</strong></p>
+                    <p style="color: var(--text-muted);">• Credits: 200 → <strong>Silver tier (1.1×)</strong></p>
+                </div>
+
+                <div style="background: var(--bg-secondary); padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--success);">
+                    <h4 style="color: var(--success); margin-bottom: 12px;">Step 2: Calculate Base Wealth</h4>
+                    <p style="color: var(--text-muted);">• XP Wealth = 350 × 2 = <strong>700</strong></p>
+                    <p style="color: var(--text-muted);">• Credits Wealth = 200 × 10 = <strong>2,000</strong></p>
+                </div>
+
+                <div style="background: var(--bg-secondary); padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ffd700;">
+                    <h4 style="color: #ffd700; margin-bottom: 12px;">Step 3: Apply Multipliers</h4>
+                    <p style="color: var(--text-muted);">• XP Wealth with Gold Tier = 700 × 1.3 = <strong>910</strong></p>
+                    <p style="color: var(--text-muted);">• Credits Wealth with Silver Tier = 2,000 × 1.1 = <strong>2,200</strong></p>
+                </div>
+
+                <div style="background: rgba(16, 185, 129, 0.2); padding: 20px; border-radius: 8px; border: 2px solid var(--success);">
+                    <h4 style="color: var(--success); margin-bottom: 12px;">Final Net Worth</h4>
+                    <p style="color: var(--text); font-size: 1.5rem; font-weight: bold;">R 910 + R 2,200 = <strong>R 3,110</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: STRATEGIES -->
+        <div class="tt-card">
+            <div class="tt-card-header">
+                <h2>💡 Wealth-Building Strategies</h2>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 15px; border-bottom: 1px solid var(--border-color); background: rgba(29, 78, 216, 0.05); border-radius: 6px; margin-bottom: 10px;">
+                    <h4 style="color: var(--primary); margin: 0 0 5px 0;">🎯 Focus on Advanced Courses</h4>
+                    <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem;">Advanced courses award +20 XP vs. +15 for basics. Reach Gold/Platinum tier faster.</p>
+                </li>
+                <li style="padding: 15px; border-bottom: 1px solid var(--border-color); background: rgba(16, 185, 129, 0.05); border-radius: 6px; margin-bottom: 10px;">
+                    <h4 style="color: var(--success); margin: 0 0 5px 0;">📈 Consistent Job Applications</h4>
+                    <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem;">10 XP per application adds up. Apply to 3–5 jobs weekly to hit milestones.</p>
+                </li>
+                <li style="padding: 15px; border-bottom: 1px solid var(--border-color); background: rgba(138, 43, 226, 0.05); border-radius: 6px; margin-bottom: 10px;">
+                    <h4 style="color: #8a2be2; margin: 0 0 5px 0;">💰 Maximize Credits (Companies)</h4>
+                    <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem;">Job posts award +50 CR. Post 5+ jobs/month to reach Credits Platinum tier.</p>
+                </li>
+                <li style="padding: 15px; background: rgba(255, 193, 7, 0.05); border-radius: 6px;">
+                    <h4 style="color: #ffc107; margin: 0 0 5px 0;">🏆 Check the Leaderboard Weekly</h4>
+                    <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem;">Track your progress against others. Competitive advantage motivates faster growth.</p>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right">
+            <span>🔗</span><span>🐦</span><span>📷</span>
+        </div>
+    </footer>
+
+    <!-- GLOBAL SCRIPT -->
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
