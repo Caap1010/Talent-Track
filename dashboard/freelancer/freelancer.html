@@ -1,186 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8" />
-        <title>TalentTrack – Freelancer Dashboard</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../../css/styles.css" />
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Freelancer Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
 
-    <body data-theme="dark">
-        <!-- HEADER -->
-        <header class="tt-header">
-            <div class="tt-header-left">
-                <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
-                <span class="tt-brand-name">TALENTTRACK</span>
+<body data-theme="dark">
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <!-- fallback, will be replaced by main.js -->
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="tt-dashboard">
+        <!-- SIDEBAR -->
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar">SQ</div>
+                <div>
+                    <h2>Sfiso Tshotwane</h2>
+                    <p>Freelance Frontend & UI</p>
+                </div>
             </div>
-            <nav class="tt-nav">
-                <!-- fallback, will be replaced by main.js -->
-                <a href="../../index.html">Home</a>
-                <a href="../../jobs.html">Jobs</a>
-                <a href="../../freelance.html">Freelance</a>
-                <a href="../../auth.html">Login</a>
-                <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+            <nav class="tt-sidebar-nav">
+                <button class="active">🏠 Home</button>
+                <a href="projects.html">📁 My Projects</a>
+                <a href="marketplace.html">🛒 Marketplace</a>
+                <a href="../../messaging.html?view=freelancer">💬 Messaging</a>
+                <a href="../../interview-room.html?view=freelancer">🎥 Interview Room</a>
+                <a href="stats.html">📊 Stats</a>
+                <a href="ranking.html">🏆 Ranking</a>
+                <a href="me.html">👤 Me</a>
+                <a href="challenge.html">🔥 Today’s Challenge</a>
+                <a href="plan.html">💳 Freelancer Plan</a>
+                <a href="opportunities.html">🧾 Marketplace Opportunities</a>
+                <a href="academy.html">🎓 A+ Student Academy</a>
             </nav>
-            <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
-        </header>
+        </aside>
 
-        <!-- MAIN DASHBOARD -->
-        <main class="tt-dashboard">
-            <!-- SIDEBAR -->
-            <aside class="tt-sidebar">
-                <div class="tt-sidebar-profile">
-                    <div class="tt-avatar">SQ</div>
-                    <div>
-                        <h2>Sfiso Tshotwane</h2>
-                        <p>Freelance Frontend & UI</p>
-                    </div>
+        <!-- CONTENT -->
+        <section class="tt-dashboard-main">
+            <!-- Top stats -->
+            <div class="tt-grid tt-grid-4">
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Profile Visits</span>
+                    <strong>312</strong>
+                    <span class="tt-stat-trend up">+22% this month</span>
                 </div>
-                <nav class="tt-sidebar-nav">
-                    <button class="active">🏠 Home</button>
-                    <a href="projects.html">📁 My Projects</a>
-                    <a href="marketplace.html">🛒 Marketplace</a>
-                    <a href="../../messaging.html?view=freelancer">💬 Messaging</a>
-                    <a href="../../interview-room.html?view=freelancer">🎥 Interview Room</a>
-                    <a href="stats.html">📊 Stats</a>
-                    <a href="ranking.html">🏆 Ranking</a>
-                    <a href="me.html">👤 Me</a>
-                    <a href="challenge.html">🔥 Today’s Challenge</a>
-                    <a href="plan.html">💳 Freelancer Plan</a>
-                    <a href="opportunities.html">🧾 Marketplace Opportunities</a>
-                    <a href="academy.html">🎓 A+ Student Academy</a>
-                </nav>
-            </aside>
-
-            <!-- CONTENT -->
-            <section class="tt-dashboard-main">
-                <!-- Top stats -->
-                <div class="tt-grid tt-grid-4">
-                    <div class="tt-stat-card">
-                        <span class="tt-stat-label">Profile Visits</span>
-                        <strong>312</strong>
-                        <span class="tt-stat-trend up">+22% this month</span>
-                    </div>
-                    <div class="tt-stat-card">
-                        <span class="tt-stat-label">Active Projects</span>
-                        <strong>4</strong>
-                        <span class="tt-stat-trend">On track</span>
-                    </div>
-                    <div class="tt-stat-card">
-                        <span class="tt-stat-label">Completed Projects</span>
-                        <strong>18</strong>
-                        <span class="tt-stat-trend up">⭐ average rating</span>
-                    </div>
-                    <div class="tt-stat-card">
-                        <span class="tt-stat-label">Earnings (this month)</span>
-                        <strong>R18 400</strong>
-                        <span class="tt-stat-trend up">+R4 200 vs last month</span>
-                    </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Active Projects</span>
+                    <strong>4</strong>
+                    <span class="tt-stat-trend">On track</span>
                 </div>
-
-                <!-- Challenge + Plan -->
-                <div class="tt-grid tt-grid-2">
-                    <div class="tt-card">
-                        <div class="tt-card-header">
-                            <h3>Today’s Challenge</h3>
-                            <span class="tt-chip tt-chip-info">🔥 45 XP</span>
-                        </div>
-                        <p>Update your portfolio with one recent project and request feedback from a client.</p>
-                        <button class="tt-btn tt-btn-primary tt-btn-sm" type="button">Open Portfolio</button>
-                    </div>
-
-                    <div class="tt-card">
-                        <div class="tt-card-header">
-                            <h3>Freelancer Plan</h3>
-                            <span class="tt-chip">Gold</span>
-                        </div>
-                        <p class="tt-company-plan-text">
-                            Gold: Access to marketplace, messaging and ranking. Upgrade to VIP for full A+ Student
-                            Academy
-                            access and priority listing.
-                        </p>
-                        <div class="tt-plan-badges">
-                            <span class="tt-chip">Gold · Marketplace only</span>
-                            <span class="tt-chip tt-chip-info">VIP · Marketplace + A+ Academy</span>
-                        </div>
-                        <a class="tt-btn tt-btn-secondary tt-btn-sm" href="academy.html">Upgrade to VIP</a>
-                    </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Completed Projects</span>
+                    <strong>18</strong>
+                    <span class="tt-stat-trend up">⭐ average rating</span>
                 </div>
-
-                <!-- Projects + Marketplace + Academy -->
-                <div class="tt-grid tt-grid-3">
-                    <div class="tt-card tt-card-jobs">
-                        <div class="tt-card-header">
-                            <h3>My Projects</h3>
-                            <a href="projects.html" class="tt-link">View all</a>
-                        </div>
-                        <ul class="tt-list">
-                            <li>
-                                <div>
-                                    <strong>FinTech Landing Page</strong>
-                                    <p>UI Design · Due in 3 days</p>
-                                </div>
-                                <span class="tt-chip tt-chip-info">In progress</span>
-                            </li>
-                            <li>
-                                <div>
-                                    <strong>TalentTrack Dashboard UI</strong>
-                                    <p>Frontend · Completed</p>
-                                </div>
-                                <span class="tt-chip tt-chip-success">Paid</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="tt-card tt-card-jobs">
-                        <div class="tt-card-header">
-                            <h3>Marketplace Opportunities</h3>
-                            <a href="opportunities.html" class="tt-link">Open Marketplace</a>
-                        </div>
-                        <ul class="tt-list">
-                            <li>
-                                <div>
-                                    <strong>UX Audit for EdTech App</strong>
-                                    <p>Fixed price · R4 500</p>
-                                </div>
-                                <a class="tt-btn tt-btn-sm tt-btn-secondary" href="opportunities.html">View Brief</a>
-                            </li>
-                            <li>
-                                <div>
-                                    <strong>React Dashboard Components</strong>
-                                    <p>Hourly · R250/h</p>
-                                </div>
-                                <a class="tt-btn tt-btn-sm tt-btn-secondary" href="opportunities.html">View Brief</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="tt-card tt-card-academy">
-                        <div class="tt-card-header">
-                            <h3>A+ Student Academy</h3>
-                            <span class="tt-chip tt-chip-locked">VIP Only</span>
-                        </div>
-                        <p>Unlock advanced courses on UX, React, Cloud and DevOps to raise your freelancer ranking.</p>
-                        <a class="tt-btn tt-btn-primary tt-btn-sm" href="academy.html">See VIP Courses</a>
-                    </div>
+                <div class="tt-stat-card">
+                    <span class="tt-stat-label">Earnings (this month)</span>
+                    <strong>R18 400</strong>
+                    <span class="tt-stat-trend up">+R4 200 vs last month</span>
                 </div>
-            </section>
-        </main>
-
-        <!-- FOOTER -->
-        <footer class="tt-footer">
-            <div class="tt-footer-left">
-                <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms</a>
             </div>
-            <div class="tt-footer-right"><span>🔗</span><span>🐦</span><span>📷</span></div>
-        </footer>
 
-        <script src="../../js/main.js"></script>
-    </body>
+            <!-- Challenge + Plan -->
+            <div class="tt-grid tt-grid-2">
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Today’s Challenge</h3>
+                        <span class="tt-chip tt-chip-info">🔥 45 XP</span>
+                    </div>
+                    <p>Update your portfolio with one recent project and request feedback from a client.</p>
+                    <button class="tt-btn tt-btn-primary tt-btn-sm" type="button">Open Portfolio</button>
+                </div>
 
-    </html>
+                <div class="tt-card">
+                    <div class="tt-card-header">
+                        <h3>Freelancer Plan</h3>
+                        <span class="tt-chip">Gold</span>
+                    </div>
+                    <p class="tt-company-plan-text">
+                        Gold: Access to marketplace, messaging and ranking. Upgrade to VIP for full A+ Student
+                        Academy
+                        access and priority listing.
+                    </p>
+                    <div class="tt-plan-badges">
+                        <span class="tt-chip">Gold · Marketplace only</span>
+                        <span class="tt-chip tt-chip-info">VIP · Marketplace + A+ Academy</span>
+                    </div>
+                    <a class="tt-btn tt-btn-secondary tt-btn-sm" href="academy.html">Upgrade to VIP</a>
+                </div>
+            </div>
+
+            <!-- Projects + Marketplace + Academy -->
+            <div class="tt-grid tt-grid-3">
+                <div class="tt-card tt-card-jobs">
+                    <div class="tt-card-header">
+                        <h3>My Projects</h3>
+                        <a href="projects.html" class="tt-link">View all</a>
+                    </div>
+                    <ul class="tt-list">
+                        <li>
+                            <div>
+                                <strong>FinTech Landing Page</strong>
+                                <p>UI Design · Due in 3 days</p>
+                            </div>
+                            <span class="tt-chip tt-chip-info">In progress</span>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>TalentTrack Dashboard UI</strong>
+                                <p>Frontend · Completed</p>
+                            </div>
+                            <span class="tt-chip tt-chip-success">Paid</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tt-card tt-card-jobs">
+                    <div class="tt-card-header">
+                        <h3>Marketplace Opportunities</h3>
+                        <a href="opportunities.html" class="tt-link">Open Marketplace</a>
+                    </div>
+                    <ul class="tt-list">
+                        <li>
+                            <div>
+                                <strong>UX Audit for EdTech App</strong>
+                                <p>Fixed price · R4 500</p>
+                            </div>
+                            <a class="tt-btn tt-btn-sm tt-btn-secondary" href="opportunities.html">View Brief</a>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>React Dashboard Components</strong>
+                                <p>Hourly · R250/h</p>
+                            </div>
+                            <a class="tt-btn tt-btn-sm tt-btn-secondary" href="opportunities.html">View Brief</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tt-card tt-card-academy">
+                    <div class="tt-card-header">
+                        <h3>A+ Student Academy</h3>
+                        <span class="tt-chip tt-chip-locked">VIP Only</span>
+                    </div>
+                    <p>Unlock advanced courses on UX, React, Cloud and DevOps to raise your freelancer ranking.</p>
+                    <a class="tt-btn tt-btn-primary tt-btn-sm" href="academy.html">See VIP Courses</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right"><span>🔗</span><span>🐦</span><span>📷</span></div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>

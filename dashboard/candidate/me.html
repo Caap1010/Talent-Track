@@ -34,7 +34,7 @@
                 </div>
             </div>
             <nav class="tt-sidebar-nav">
-                <a href="../candidate.html">🏠 Home</a>
+                <a href="candidate.html">🏠 Home</a>
                 <a href="network.html">👥 My Network</a>
                 <a href="interview-prep.html">🧠 Interview Prep</a>
                 <a href="ranking.html">🏆 Ranking</a>
@@ -68,12 +68,31 @@
                     </div>
                 </div>
 
-                <div class="tt-card-section" style="margin-top:12px;">
-                    <h4>Details</h4>
-                    <p>Name: Sfiso Quintin Tshotwane</p>
-                    <p>Role Target: Junior Developer / Cloud Support</p>
-                    <p>Location: Johannesburg, South Africa</p>
-                    <p>Skills: JavaScript, React, Python, Power BI</p>
+                <div class="tt-card-section" style="margin-top:12px;" id="ttProfileView">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <h4>Details</h4>
+                        <div>
+                            <button id="editProfileBtn" class="tt-btn tt-btn-secondary tt-btn-sm">Edit</button>
+                        </div>
+                    </div>
+                    <div id="ttProfileDisplay">
+                        <p id="pfName">Name: Sfiso Quintin Tshotwane</p>
+                        <p id="pfRole">Role Target: Junior Developer / Cloud Support</p>
+                        <p id="pfLocation">Location: Johannesburg, South Africa</p>
+                        <p id="pfSkills">Skills: JavaScript, React, Python, Power BI</p>
+                    </div>
+
+                    <form id="ttProfileForm" style="display:none;margin-top:8px;">
+                        <label>Full name<br /><input id="pfNameInput" type="text" /></label><br />
+                        <label>Role target<br /><input id="pfRoleInput" type="text" /></label><br />
+                        <label>Location<br /><input id="pfLocationInput" type="text" /></label><br />
+                        <label>Skills (comma separated)<br /><input id="pfSkillsInput" type="text" /></label><br />
+                        <div style="margin-top:8px;">
+                            <button id="saveProfileBtn" class="tt-btn tt-btn-primary tt-btn-sm">Save</button>
+                            <button id="cancelProfileBtn" type="button"
+                                class="tt-btn tt-btn-ghost tt-btn-sm">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -93,6 +112,66 @@
             <span aria-label="Instagram">📷</span>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            const form = document.getElementById('ttProfileForm');
+            const display = document.getElementById('ttProfileDisplay');
+            const editBtn = document.getElementById('editProfileBtn');
+            const saveBtn = document.getElementById('saveProfileBtn');
+            const cancelBtn = document.getElementById('cancelProfileBtn');
+            const inputs = {
+                name: document.getElementById('pfNameInput'),
+                role: document.getElementById('pfRoleInput'),
+                location: document.getElementById('pfLocationInput'),
+                skills: document.getElementById('pfSkillsInput')
+            };
+
+            function loadProfile() {
+                const p = JSON.parse(localStorage.getItem('TT_PROFILE') || '{}');
+                document.getElementById('pfName').textContent = 'Name: ' + (p.Full_Name || '—');
+                document.getElementById('pfRole').textContent = 'Role Target: ' + (p.Your_Role || (p.Professional_Headline || '—'));
+                document.getElementById('pfLocation').textContent = 'Location: ' + (p.Location || (p.Contact_Number || '—'));
+                document.getElementById('pfSkills').textContent = 'Skills: ' + (p.Strengths || '—');
+
+                inputs.name.value = p.Full_Name || '';
+                inputs.role.value = p.Your_Role || p.Professional_Headline || '';
+                inputs.location.value = p.Location || p.Contact_Number || '';
+                inputs.skills.value = p.Strengths || '';
+            }
+
+            if (editBtn) {
+                editBtn.addEventListener('click', () => {
+                    display.style.display = 'none';
+                    form.style.display = 'block';
+                });
+            }
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', () => {
+                    form.style.display = 'none';
+                    display.style.display = 'block';
+                });
+            }
+            if (saveBtn) {
+                saveBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const obj = {
+                        Full_Name: inputs.name.value.trim(),
+                        Your_Role: inputs.role.value.trim(),
+                        Location: inputs.location.value.trim(),
+                        Strengths: inputs.skills.value.trim()
+                    };
+                    localStorage.setItem('TT_PROFILE', JSON.stringify(obj));
+                    loadProfile();
+                    form.style.display = 'none';
+                    display.style.display = 'block';
+                });
+            }
+
+            // Populate on open
+            loadProfile();
+        })();
+    </script>
 
     <script src="../../js/main.js"></script>
 </body>

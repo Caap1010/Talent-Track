@@ -562,6 +562,62 @@ if (document.getElementById("successRateChart") && typeof Chart !== "undefined")
 })();
 
 /* ============================================
+   SIMPLE APPLY / POST-JOB HANDLERS
+   - Intercept 'Apply' links that currently point to auth.html and
+     submit a localStorage application when user is logged in.
+   - Route 'Post a Job' clicks for company users to their dashboard.
+============================================ */
+(function () {
+    // 'Apply' buttons that currently link to auth.html in jobs listing
+    document.querySelectorAll('a[href="auth.html"]').forEach(a => {
+        try {
+            if (a.textContent && a.textContent.trim().toLowerCase() === 'apply') {
+                a.addEventListener('click', function (e) {
+                    const role = localStorage.getItem('TT_USER_ROLE');
+                    if (!role) {
+                        // not logged in — allow default navigation to auth.html
+                        return;
+                    }
+                    e.preventDefault();
+                    const jobCard = a.closest('.tt-job-result');
+                    const title = jobCard ? (jobCard.querySelector('h3')?.textContent || 'Job') : 'Job';
+                    const apps = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
+                    apps.push({ title, date: new Date().toISOString(), user: localStorage.getItem('TT_USER_NAME') || '' });
+                    localStorage.setItem('TT_APPLICATIONS', JSON.stringify(apps));
+                    alert('Application submitted for: ' + title);
+                });
+            }
+        } catch (err) {
+            /* ignore */
+        }
+    });
+
+    // 'Post a Job' text links: if company/recruiter, route to company dashboard
+    document.querySelectorAll('a').forEach(a => {
+        try {
+            if (a.textContent && a.textContent.trim().toLowerCase() === 'post a job') {
+                a.addEventListener('click', function (e) {
+                    const role = localStorage.getItem('TT_USER_ROLE');
+                    if (role === 'company' || role === 'recruiter') {
+                        e.preventDefault();
+                        const path = location.pathname.replace(/\\/g, '/');
+                        let P = '';
+                        if (path.includes('/dashboard/company/') || path.includes('/dashboard/candidate/') || path.includes('/dashboard/freelancer/')) {
+                            P = '../../';
+                        } else if (path.includes('/dashboard/')) {
+                            P = '../';
+                        } else {
+                            P = '';
+                        }
+                        window.location.href = P + 'dashboard/company/company.html';
+                    }
+                });
+            }
+        } catch (err) { }
+    });
+})();
+
+/* ============================================
    MESSAGING UI LOGIC
    ============================================ */
 
