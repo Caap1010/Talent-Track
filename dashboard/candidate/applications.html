@@ -42,14 +42,70 @@
         </aside>
 
         <section class="tt-dashboard-main">
+            <!-- FILTERS CARD -->
+            <div class="tt-card" style="margin-bottom: 20px;">
+                <div class="tt-card-header">
+                    <h3>Filters & Search</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem;">Search
+                            by Title</label>
+                        <input id="filterTitle" type="text" placeholder="e.g., Software Engineer"
+                            style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--input-bg); color: var(--text);" />
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem;">Status</label>
+                        <select id="filterStatus"
+                            style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--input-bg); color: var(--text);">
+                            <option value="">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="interview">Interview</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem;">Date
+                            Range</label>
+                        <input id="filterDateFrom" type="date"
+                            style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--input-bg); color: var(--text);" />
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem;">To</label>
+                        <input id="filterDateTo" type="date"
+                            style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--input-bg); color: var(--text);" />
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 12px;">
+                    <button id="filterBtn" class="tt-btn tt-btn-primary tt-btn-sm">Apply Filters</button>
+                    <button id="resetBtn" class="tt-btn tt-btn-secondary tt-btn-sm">Reset</button>
+                </div>
+            </div>
+
+            <!-- APPLICATIONS CARD -->
             <div class="tt-card">
                 <div class="tt-card-header">
                     <h3>Your Applications</h3>
-                    <span class="tt-chip">Local</span>
+                    <span class="tt-chip" id="appCount">0</span>
                 </div>
                 <div class="tt-card-section">
                     <ul id="ttApplicationsPageList" class="tt-list">
                         <li class="tt-muted">No applications yet.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- WITHDRAWAL HISTORY -->
+            <div class="tt-card" style="margin-top: 30px;">
+                <div class="tt-card-header">
+                    <h3>Withdrawal History</h3>
+                    <span class="tt-chip" id="historyCount">0</span>
+                </div>
+                <div class="tt-card-section">
+                    <ul id="withdrawalHistory" class="tt-list">
+                        <li class="tt-muted">No withdrawals yet.</li>
                     </ul>
                 </div>
             </div>
@@ -69,36 +125,150 @@
 
     <script>
         (function () {
-            function renderApps() {
+            const WITHDRAWAL_KEY = "TT_WITHDRAWAL_HISTORY";
+
+            function renderApps(filteredApps = null) {
                 const list = document.getElementById('ttApplicationsPageList');
                 const apps = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
-                if (!apps.length) {
-                    list.innerHTML = '<li class="tt-muted">No applications yet.</li>';
+                const appsToShow = filteredApps || apps;
+
+                document.getElementById('appCount').textContent = appsToShow.length;
+
+                if (!appsToShow.length) {
+                    list.innerHTML = '<li class="tt-muted">No applications match your filters.</li>';
                     return;
                 }
+
                 list.innerHTML = '';
-                const appsRev = apps.slice().reverse();
+                const appsRev = appsToShow.slice().reverse();
                 appsRev.forEach((a, revIdx) => {
-                    const origIdx = apps.length - 1 - revIdx;
+                    const origIdx = apps.findIndex(app => app === a);
                     const li = document.createElement('li');
-                    li.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;"><div><strong>${a.title}</strong><p class="tt-job-meta">Applied: ${new Date(a.date).toLocaleString()}</p></div><div><button class="tt-btn tt-btn-ghost tt-btn-sm tt-withdraw" data-idx="${origIdx}">Withdraw</button></div></div>`;
+                    const appliedDate = new Date(a.date);
+                    const daysAgo = Math.floor((Date.now() - appliedDate.getTime()) / (1000 * 60 * 60 * 24));
+                    const timeStr = daysAgo === 0 ? 'Today' : daysAgo === 1 ? 'Yesterday' : `${daysAgo} days ago`;
+
+                    li.innerHTML = `
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <div style="flex:1;">
+                                <strong style="color: var(--primary);">${a.title}</strong>
+                                <p class="tt-muted" style="margin: 4px 0; font-size: 0.9rem;">
+                                    📍 ${a.location || 'Location TBA'} • 
+                                    ${a.type || 'Position'} • 
+                                    <span style="color: var(--text-muted);">${timeStr}</span>
+                                </p>
+                                <p class="tt-muted" style="margin: 4px 0; font-size: 0.85rem;">Applied: ${appliedDate.toLocaleString()}</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <span class="tt-chip" style="background: rgba(16, 185, 129, 0.2); color: var(--success); margin-right: 8px;">+10 XP</span>
+                                <button class="tt-btn tt-btn-ghost tt-btn-sm tt-withdraw" data-idx="${origIdx}" style="color: #ef4444;">Withdraw</button>
+                            </div>
+                        </div>
+                    `;
                     list.appendChild(li);
                 });
 
-                // attach withdraw handlers
+                // Attach withdraw handlers
                 list.querySelectorAll('.tt-withdraw').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const idx = parseInt(btn.getAttribute('data-idx'), 10);
                         const appsNow = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
-                        if (!appsNow[idx]) return (window.ttFlash || alert)('Application not found');
+                        if (!appsNow[idx]) return window.ttFlash('Application not found', 'error');
+
                         const removed = appsNow.splice(idx, 1)[0];
                         localStorage.setItem('TT_APPLICATIONS', JSON.stringify(appsNow));
-                        (window.ttFlash || alert)(`Withdrawn application: ${removed.title}`);
+
+                        // Add to withdrawal history
+                        const history = JSON.parse(localStorage.getItem(WITHDRAWAL_KEY) || '[]');
+                        history.push({
+                            title: removed.title,
+                            date: new Date().toISOString(),
+                            appliedDate: removed.date,
+                            reason: 'User withdrawal'
+                        });
+                        localStorage.setItem(WITHDRAWAL_KEY, JSON.stringify(history));
+
+                        window.ttFlash(`Withdrawn: ${removed.title}`, 'success');
                         renderApps();
+                        renderWithdrawalHistory();
                     });
                 });
             }
+
+            function renderWithdrawalHistory() {
+                const histList = document.getElementById('withdrawalHistory');
+                const history = JSON.parse(localStorage.getItem(WITHDRAWAL_KEY) || '[]');
+
+                document.getElementById('historyCount').textContent = history.length;
+
+                if (!history.length) {
+                    histList.innerHTML = '<li class="tt-muted">No withdrawals yet.</li>';
+                    return;
+                }
+
+                histList.innerHTML = '';
+                const histRev = history.slice().reverse();
+                histRev.forEach(h => {
+                    const withdrawDate = new Date(h.date);
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <div style="flex:1;">
+                                <strong style="text-decoration: line-through; opacity: 0.7;">${h.title}</strong>
+                                <p class="tt-muted" style="margin: 4px 0; font-size: 0.9rem;">
+                                    Withdrawn: ${withdrawDate.toLocaleString()}
+                                </p>
+                            </div>
+                            <span class="tt-chip" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">Withdrawn</span>
+                        </div>
+                    `;
+                    histList.appendChild(li);
+                });
+            }
+
+            function applyFilters() {
+                const apps = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
+                const titleFilter = document.getElementById('filterTitle').value.toLowerCase();
+                const statusFilter = document.getElementById('filterStatus').value;
+                const dateFromStr = document.getElementById('filterDateFrom').value;
+                const dateToStr = document.getElementById('filterDateTo').value;
+
+                const dateFrom = dateFromStr ? new Date(dateFromStr) : null;
+                const dateTo = dateToStr ? new Date(dateToStr + 'T23:59:59') : null;
+
+                const filtered = apps.filter(app => {
+                    const titleMatch = !titleFilter || app.title.toLowerCase().includes(titleFilter);
+                    const statusMatch = !statusFilter || (app.status || 'pending') === statusFilter;
+                    const appDate = new Date(app.date);
+                    const dateMatch = (!dateFrom || appDate >= dateFrom) && (!dateTo || appDate <= dateTo);
+
+                    return titleMatch && statusMatch && dateMatch;
+                });
+
+                renderApps(filtered);
+            }
+
+            // Event listeners
+            document.getElementById('filterBtn').addEventListener('click', applyFilters);
+            document.getElementById('resetBtn').addEventListener('click', () => {
+                document.getElementById('filterTitle').value = '';
+                document.getElementById('filterStatus').value = '';
+                document.getElementById('filterDateFrom').value = '';
+                document.getElementById('filterDateTo').value = '';
+                renderApps();
+            });
+
+            // Allow Enter key to apply filters
+            ['filterTitle', 'filterStatus', 'filterDateFrom', 'filterDateTo'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') applyFilters();
+                });
+            });
+
+            // Initial render
             renderApps();
+            renderWithdrawalHistory();
         })();
     </script>
     <script src="../../js/main.js"></script>

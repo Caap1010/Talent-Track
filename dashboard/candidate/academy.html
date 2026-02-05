@@ -299,8 +299,8 @@
 
             const file = $("#ap_cv").files[0];
             if (file) {
-                if (file.type !== "application/pdf") return alert("PDF only allowed.");
-                if (file.size > 100 * 1024 * 1024) return alert("Max file size is 100MB.");
+                if (file.type !== "application/pdf") return window.ttFlash("PDF only allowed.", "error");
+                if (file.size > 100 * 1024 * 1024) return window.ttFlash("Max file size is 100MB.", "error");
                 if (cvUrl) try { URL.revokeObjectURL(cvUrl); } catch (e) { }
                 cvUrl = URL.createObjectURL(file);
                 localStorage.setItem(CV_URL_KEY, cvUrl);
@@ -321,11 +321,11 @@
             localStorage.setItem(XP_KEY, xp);
 
             hydrateUI();
-            alert("Profile updated!");
+            window.ttFlash("Profile updated!", "success");
         });
 
         $("#clearCvBtn").addEventListener("click", () => {
-            if (!cvUrl) return alert("No CV to remove.");
+            if (!cvUrl) return window.ttFlash("No CV to remove.", "error");
             try { URL.revokeObjectURL(cvUrl); } catch (e) { }
             cvUrl = "";
             localStorage.removeItem(CV_URL_KEY);
@@ -335,7 +335,7 @@
         document.querySelectorAll("[data-course]").forEach(btn => {
             btn.addEventListener("click", () => {
                 const id = btn.dataset.course;
-                if (courses.includes(id)) return alert("Already completed.");
+                if (courses.includes(id)) return window.ttFlash("Already completed.", "info");
 
                 courses.push(id);
                 localStorage.setItem(DONE_KEY, JSON.stringify(courses));

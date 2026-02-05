@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Leaderboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-theme="dark">
+
+    <!-- HEADER -->
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+
+        <nav class="tt-nav">
+            <a href="index.html">Home</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="freelance.html">Freelance</a>
+            <a href="auth.html">Login</a>
+            <a href="register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <!-- MAIN -->
+    <main style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+
+        <!-- PAGE TITLE -->
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">🏆 Wealth Leaderboard</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Top richest users by Net Worth</p>
+        </div>
+
+        <!-- STATS ROW -->
+        <div class="tt-grid tt-grid-3" style="margin-bottom: 40px;">
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Total Users</h3>
+                </div>
+                <p id="totalUsers" style="font-size: 2rem; font-weight: bold; color: var(--primary);">0</p>
+            </div>
+
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Total XP</h3>
+                </div>
+                <p id="totalXP" style="font-size: 2rem; font-weight: bold; color: var(--primary);">0</p>
+            </div>
+
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Total Credits</h3>
+                </div>
+                <p id="totalCredits" style="font-size: 2rem; font-weight: bold; color: var(--primary);">0</p>
+            </div>
+        </div>
+
+        <!-- LEADERBOARD TABLE -->
+        <div class="tt-card">
+            <div class="tt-card-header">
+                <h2>Top 10 Richest Users</h2>
+                <span class="tt-chip">Ranked by Net Worth</span>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color);">
+                            <th style="padding: 12px; text-align: left; color: var(--text-muted); font-weight: 600;">
+                                Rank</th>
+                            <th style="padding: 12px; text-align: left; color: var(--text-muted); font-weight: 600;">
+                                User</th>
+                            <th style="padding: 12px; text-align: right; color: var(--text-muted); font-weight: 600;">XP
+                            </th>
+                            <th style="padding: 12px; text-align: right; color: var(--text-muted); font-weight: 600;">
+                                Credits</th>
+                            <th style="padding: 12px; text-align: right; color: var(--text-muted); font-weight: 600;">
+                                Net Worth</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardTable">
+                        <!-- dynamically filled -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div
+                style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted);">
+                <p>💡 Net Worth is calculated as: <code
+                        style="background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;">(XP × 2) + (Credits × 10)</code>
+                </p>
+            </div>
+        </div>
+
+        <!-- EXPLANATION -->
+        <div class="tt-card"
+            style="margin-top: 30px; background: linear-gradient(135deg, rgba(29, 78, 216, 0.1), rgba(16, 185, 129, 0.1)); border: 1px solid var(--border-color);">
+            <div class="tt-card-header">
+                <h3>How to Climb the Leaderboard</h3>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 8px 0; border-bottom: 1px solid var(--border-color);">✅ <strong>Apply for
+                        jobs</strong> → Earn 10 XP per application</li>
+                <li style="padding: 8px 0; border-bottom: 1px solid var(--border-color);">📝 <strong>Post job
+                        listings</strong> (Company) → Earn 50 credits per post</li>
+                <li style="padding: 8px 0; border-bottom: 1px solid var(--border-color);">🎓 <strong>Complete
+                        courses</strong> (Academy) → Earn 15–20 XP per course</li>
+                <li style="padding: 8px 0;">💼 <strong>Update your profile</strong> → Unlock bonus XP</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right">
+            <span>🔗</span><span>🐦</span><span>📷</span>
+        </div>
+    </footer>
+
+    <!-- GLOBAL SCRIPT -->
+    <script src="js/main.js"></script>
+
+    <!-- PAGE LOGIC -->
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Simulate multiple users with their stats
+        // In a real app, this would come from a backend database
+        const simulatedUsers = [
+            { name: "Alex Johnson", xp: 250, credits: 300 },
+            { name: "Maria Garcia", xp: 180, credits: 400 },
+            { name: "David Chen", xp: 220, credits: 200 },
+            { name: "Priya Patel", xp: 160, credits: 350 },
+            { name: "James Wilson", xp: 200, credits: 150 },
+            { name: "Sarah O'Brien", xp: 140, credits: 250 },
+            { name: "Ahmed Hassan", xp: 190, credits: 100 },
+            { name: "Lisa Wong", xp: 130, credits: 280 },
+            { name: "Marcus Brown", xp: 170, credits: 180 },
+            { name: "Emma Schmidt", xp: 150, credits: 220 }
+        ];
+
+        // Combine simulated users with actual localStorage users
+        function getAllUsers() {
+            const users = [];
+
+            // Get current user from localStorage
+            const userName = localStorage.getItem("TT_USER_NAME");
+            const userXP = parseInt(localStorage.getItem("TT_XP") || "0");
+            const userCredits = parseInt(localStorage.getItem("TT_COMPANY_CREDITS") || "0");
+
+            if (userName) {
+                users.push({
+                    name: userName,
+                    xp: userXP,
+                    credits: userCredits,
+                    isCurrent: true
+                });
+            }
+
+            // Add simulated users
+            simulatedUsers.forEach(user => {
+                // Don't duplicate if already in users list
+                if (!users.find(u => u.name === user.name)) {
+                    users.push(user);
+                }
+            });
+
+            return users;
+        }
+
+        // Calculate Net Worth
+        function getNetWorth(xp, credits) {
+            return (xp * 2) + (credits * 10);
+        }
+
+        // Render leaderboard
+        function renderLeaderboard() {
+            const users = getAllUsers();
+
+            // Sort by Net Worth descending
+            users.sort((a, b) => getNetWorth(b.xp, b.credits) - getNetWorth(a.xp, a.credits));
+
+            // Take top 10
+            const top10 = users.slice(0, 10);
+
+            // Calculate totals
+            let totalUsers = users.length;
+            let totalXP = users.reduce((sum, u) => sum + u.xp, 0);
+            let totalCredits = users.reduce((sum, u) => sum + u.credits, 0);
+
+            document.getElementById("totalUsers").textContent = totalUsers;
+            document.getElementById("totalXP").textContent = totalXP;
+            document.getElementById("totalCredits").textContent = totalCredits;
+
+            // Render table rows
+            const tbody = document.getElementById("leaderboardTable");
+            tbody.innerHTML = "";
+
+            const medals = ["🥇", "🥈", "🥉"];
+            const rankIcons = ["👑", "⭐", "🌟"];
+
+            top10.forEach((user, index) => {
+                const rank = index + 1;
+                const netWorth = getNetWorth(user.xp, user.credits);
+                const medal = medals[index] || rankIcons[Math.min(index - 3, rankIcons.length - 1)];
+
+                const row = document.createElement("tr");
+                row.style.borderBottom = "1px solid var(--border-color)";
+                if (user.isCurrent) {
+                    row.style.background = "rgba(29, 78, 216, 0.15)";
+                    row.style.fontWeight = "600";
+                }
+
+                row.innerHTML = `
+                    <td style="padding: 12px; text-align: left; color: var(--text);">
+                        ${medal} #${rank}
+                    </td>
+                    <td style="padding: 12px; text-align: left; color: var(--text);">
+                        ${user.name} ${user.isCurrent ? '<span style="color: var(--primary); margin-left: 8px;">(You)</span>' : ''}
+                    </td>
+                    <td style="padding: 12px; text-align: right; color: var(--text-muted);">
+                        ${user.xp} XP
+                    </td>
+                    <td style="padding: 12px; text-align: right; color: var(--text-muted);">
+                        ${user.credits} CR
+                    </td>
+                    <td style="padding: 12px; text-align: right; color: var(--primary); font-weight: 600;">
+                        R${netWorth.toLocaleString()}
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // If no users, show placeholder
+            if (top10.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="padding: 40px; text-align: center; color: var(--text-muted);">No users yet. <a href="register.html" style="color: var(--primary);">Join now!</a></td></tr>';
+            }
+        }
+
+        // Initial render
+        renderLeaderboard();
+
+        // Listen for storage changes (from other tabs/windows)
+        window.addEventListener("storage", renderLeaderboard);
+    </script>
+
+</body>
+
+</html>

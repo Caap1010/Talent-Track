@@ -281,8 +281,8 @@
 
             const file = $("#ap_cv").files[0];
             if (file) {
-                if (file.type !== "application/pdf") return alert("PDF only.");
-                if (file.size > 100 * 1024 * 1024) return alert("Max 100MB.");
+                if (file.type !== "application/pdf") return window.ttFlash("PDF only.", "error");
+                if (file.size > 100 * 1024 * 1024) return window.ttFlash("Max 100MB.", "error");
                 if (cvUrl) { try { URL.revokeObjectURL(cvUrl); } catch (e) { } }
                 cvUrl = URL.createObjectURL(file);
                 localStorage.setItem(CV_KEY, cvUrl);
@@ -307,12 +307,12 @@
             localStorage.setItem(STUDENTS_KEY, String(students));
 
             hydrateUI();
-            alert("Company profile updated!");
+            window.ttFlash("Company profile updated!", "success");
         });
 
         // Remove file
         $("#clearCvBtn").addEventListener("click", () => {
-            if (!cvUrl) return alert("No file to remove.");
+            if (!cvUrl) return window.ttFlash("No file to remove.", "error");
             try { URL.revokeObjectURL(cvUrl); } catch (e) { }
             cvUrl = "";
             localStorage.removeItem(CV_KEY);
@@ -323,7 +323,7 @@
         document.querySelectorAll("[data-course]").forEach((btn) => {
             btn.addEventListener("click", () => {
                 const id = btn.dataset.course;
-                if (done.includes(id)) return alert("Already completed.");
+                if (done.includes(id)) return window.ttFlash("Already completed.", "info");
                 done.push(id);
                 localStorage.setItem(COURSES_KEY, JSON.stringify(done));
                 // Award XP

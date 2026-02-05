@@ -38,15 +38,18 @@
                 </div>
             </div>
             <nav class="tt-sidebar-nav">
-                <button class="active">🏠 Home</button>
-                <button>👥 My Network</button>
-                <button>💼 Jobs</button>
+                <a href="candidate.html">🏠 Home</a>
+                <a href="network.html">👥 My Network</a>
+                <a href="../../jobs.html">💼 Jobs</a>
                 <a href="../../messaging.html?view=candidate">💬 Messaging</a>
-                <button>🧠 Interview Prep</button>
+                <a href="interview-prep.html">🧠 Interview Prep</a>
                 <a href="../../interview-room.html?view=candidate">🎥 Interview Room</a>
-                <button>📊 Stats</button>
-                <button>🏆 Ranking</button>
-                <button>👤 Me</button>
+                <a href="../../stats.html">📊 Stats</a>
+                <a href="ranking.html">🏆 Ranking</a>
+                <a href="../../leaderboard.html">💰 Leaderboard</a>
+                <a href="me.html">👤 Me</a>
+                <a href="applications.html">📨 Applications</a>
+                <a href="academy.html">🎓 Academy</a>
             </nav>
         </aside>
 
@@ -197,17 +200,55 @@
     <script src="../../js/main.js"></script>
     <script>
         (function () {
+            // Enhanced Net Worth Model with Tier Multipliers
+            function calculateNetWorth(xp, credits) {
+                let xpBase = xp * 2;
+                let creditsBase = credits * 10;
+
+                // XP Tier Multipliers (progression bonus)
+                let xpMultiplier = 1;
+                if (xp >= 500) xpMultiplier = 1.5; // Platinum
+                else if (xp >= 300) xpMultiplier = 1.3; // Gold
+                else if (xp >= 150) xpMultiplier = 1.15; // Silver
+                // else Bronze (1x)
+
+                // Credits Tier Multipliers
+                let creditsMultiplier = 1;
+                if (credits >= 500) creditsMultiplier = 1.4;
+                else if (credits >= 250) creditsMultiplier = 1.25;
+                else if (credits >= 100) creditsMultiplier = 1.1;
+
+                const xpWealth = xpBase * xpMultiplier;
+                const creditsWealth = creditsBase * creditsMultiplier;
+
+                return {
+                    total: Math.round(xpWealth + creditsWealth),
+                    xpWealth: Math.round(xpWealth),
+                    creditsWealth: Math.round(creditsWealth),
+                    xpMultiplier,
+                    creditsMultiplier,
+                    xpTier: xp >= 500 ? 'Platinum' : xp >= 300 ? 'Gold' : xp >= 150 ? 'Silver' : 'Bronze',
+                    creditsTier: credits >= 500 ? 'Platinum' : credits >= 250 ? 'Gold' : credits >= 100 ? 'Silver' : 'Bronze'
+                };
+            }
+
             function renderNetWorth() {
                 const xp = parseInt(localStorage.getItem('TT_XP') || '0', 10);
                 const credits = parseInt(localStorage.getItem('TT_COMPANY_CREDITS') || '0', 10);
-                const net = (xp * 2) + (credits * 10); // arbitrary conversion for demo
+                const wealth = calculateNetWorth(xp, credits);
+
                 const el = document.getElementById('ttNetWorth');
                 const xpEl = document.getElementById('ttXPVal');
-                if (el) el.textContent = 'R' + net.toLocaleString();
+
+                if (el) {
+                    el.textContent = 'R' + wealth.total.toLocaleString();
+                    // Add a tooltip showing breakdown
+                    el.title = `XP Wealth: R${wealth.xpWealth} (${wealth.xpTier} tier: ${(wealth.xpMultiplier * 100).toFixed(0)}%)\nCredits Wealth: R${wealth.creditsWealth} (${wealth.creditsTier} tier: ${(wealth.creditsMultiplier * 100).toFixed(0)}%)`;
+                }
                 if (xpEl) xpEl.textContent = xp;
             }
+
             renderNetWorth();
-            // update when storage changes (same window)
             window.addEventListener('storage', renderNetWorth);
         })();
     </script>

@@ -250,11 +250,11 @@
                 Your_Role: $("#ap_role").value.trim(),
                 Description_of_Work: $("#ap_desc").value.trim()
             };
-            if (!p.Full_Name || !p.Professional_Headline) return alert("Full Name & Headline are required.");
+            if (!p.Full_Name || !p.Professional_Headline) return window.ttFlash("Full Name & Headline are required.", "error");
             const file = $("#ap_cv").files[0];
             if (file) {
-                if (file.type !== "application/pdf") return alert("Please upload a PDF.");
-                if (file.size > 100 * 1024 * 1024) return alert("File exceeds 100MB.");
+                if (file.type !== "application/pdf") return window.ttFlash("Please upload a PDF.", "error");
+                if (file.size > 100 * 1024 * 1024) return window.ttFlash("File exceeds 100MB.", "error");
                 if (cvUrl) try { URL.revokeObjectURL(cvUrl); } catch (e) { }
                 cvUrl = URL.createObjectURL(file);
                 localStorage.setItem(CV_URL_KEY, cvUrl);
@@ -263,12 +263,13 @@
             localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
             const basics = p.Full_Name && p.Professional_Headline && p.Email_Address && p.Contact_Number;
             if (basics) { xp = Math.max(xp, 10); localStorage.setItem(XP_KEY, String(xp)); }
-            hydrate(); alert("Profile saved ✅");
+            hydrate(); window.ttFlash("Profile saved ✅", "success");
         });
         $("#clearCvBtn").addEventListener("click", () => {
-            if (!cvUrl) return alert("No CV stored.");
+            if (!cvUrl) return window.ttFlash("No CV stored.", "error");
             try { URL.revokeObjectURL(cvUrl); } catch (e) { }
-            cvUrl = ""; localStorage.removeItem(CV_URL_KEY); hydrate(); alert("CV removed.");
+            cvUrl = ""; localStorage.removeItem(CV_URL_KEY); hydrate(); window.ttFlash("CV removed.", "success");
+        });
         });
         document.addEventListener("click", (e) => {
             const btn = e.target.closest("[data-course]"); if (!btn) return;
