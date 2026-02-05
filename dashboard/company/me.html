@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TalentTrack – Company Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+
+<body data-theme="dark">
+    <header class="tt-header">
+        <div class="tt-header-left">
+            <img src="../../img/logo.png" alt="TalentTrack logo" class="tt-logo" />
+            <span class="tt-brand-name">TALENTTRACK</span>
+        </div>
+        <nav class="tt-nav">
+            <a href="../../index.html">Home</a>
+            <a href="../../jobs.html">Jobs</a>
+            <a href="../../freelance.html">Freelance</a>
+            <a href="../../auth.html">Login</a>
+            <a href="../../register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
+        </nav>
+        <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <main class="tt-dashboard">
+        <aside class="tt-sidebar">
+            <div class="tt-sidebar-profile">
+                <div class="tt-avatar">TT</div>
+                <div>
+                    <h2>TalentTrack Labs</h2>
+                    <p>Hiring Partner · Tech &amp; Grad Talent</p>
+                </div>
+            </div>
+            <nav class="tt-sidebar-nav">
+                <a href="company.html">🏠 Home</a>
+                <a href="me.html" class="active">👤 Me</a>
+                <a href="candidates.html">🧑‍💻 Candidates</a>
+                <a href="freelancers.html">🧑‍🎨 Freelancers</a>
+            </nav>
+        </aside>
+
+        <section class="tt-dashboard-main">
+            <div class="tt-card">
+                <div class="tt-card-header">
+                    <h3>Company Profile</h3>
+                    <span class="tt-chip">View</span>
+                </div>
+                <div id="companyProfileDisplay">
+                    <p id="coName">Company: TalentTrack Labs</p>
+                    <p id="coIndustry">Industry: Technology</p>
+                    <p id="coLocation">Location: Johannesburg, South Africa</p>
+                    <p id="coDesc">Description: Talent &amp; hiring partner for tech graduates.</p>
+                    <button id="editCompanyBtn" class="tt-btn tt-btn-secondary tt-btn-sm">Edit</button>
+                </div>
+
+                <form id="companyProfileForm" style="display:none;margin-top:8px;">
+                    <label>Company name<br/><input id="coNameInput" type="text" /></label><br/>
+                    <label>Industry<br/><input id="coIndustryInput" type="text" /></label><br/>
+                    <label>Location<br/><input id="coLocationInput" type="text" /></label><br/>
+                    <label>Description<br/><textarea id="coDescInput"></textarea></label><br/>
+                    <div style="margin-top:8px;">
+                        <button id="saveCompanyBtn" class="tt-btn tt-btn-primary tt-btn-sm">Save</button>
+                        <button id="cancelCompanyBtn" type="button" class="tt-btn tt-btn-ghost tt-btn-sm">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tt-footer">
+        <div class="tt-footer-left">
+            <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div class="tt-footer-right"><span>🔗</span><span>🐦</span><span>📷</span></div>
+    </footer>
+
+    <script>
+        (function () {
+            const form = document.getElementById('companyProfileForm');
+            const display = document.getElementById('companyProfileDisplay');
+            const editBtn = document.getElementById('editCompanyBtn');
+            const saveBtn = document.getElementById('saveCompanyBtn');
+            const cancelBtn = document.getElementById('cancelCompanyBtn');
+            const inputs = {
+                name: document.getElementById('coNameInput'),
+                industry: document.getElementById('coIndustryInput'),
+                location: document.getElementById('coLocationInput'),
+                desc: document.getElementById('coDescInput')
+            };
+
+            function load() {
+                const p = JSON.parse(localStorage.getItem('TT_COMPANY_PROFILE') || '{}');
+                document.getElementById('coName').textContent = 'Company: ' + (p.name || 'TalentTrack Labs');
+                document.getElementById('coIndustry').textContent = 'Industry: ' + (p.industry || 'Technology');
+                document.getElementById('coLocation').textContent = 'Location: ' + (p.location || 'Johannesburg, South Africa');
+                document.getElementById('coDesc').textContent = 'Description: ' + (p.desc || 'Talent & hiring partner for tech graduates.');
+
+                inputs.name.value = p.name || '';
+                inputs.industry.value = p.industry || '';
+                inputs.location.value = p.location || '';
+                inputs.desc.value = p.desc || '';
+            }
+
+            if (editBtn) editBtn.addEventListener('click', () => { display.style.display = 'none'; form.style.display = 'block'; });
+            if (cancelBtn) cancelBtn.addEventListener('click', () => { form.style.display = 'none'; display.style.display = 'block'; });
+            if (saveBtn) saveBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const obj = { name: inputs.name.value.trim(), industry: inputs.industry.value.trim(), location: inputs.location.value.trim(), desc: inputs.desc.value.trim() };
+                localStorage.setItem('TT_COMPANY_PROFILE', JSON.stringify(obj));
+                (window.ttFlash || alert)('Company profile saved');
+                load();
+                form.style.display = 'none';
+                display.style.display = 'block';
+            });
+
+            load();
+        })();
+    </script>
+
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>

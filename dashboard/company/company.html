@@ -302,28 +302,28 @@
                     renderPosts();
                     form.reset();
                     alert('Job posted locally.');
-    <script>
-        (function () {
+                    <script>
+                        (function () {
             const creditsEl = document.getElementById('companyCredits');
-            function renderCredits() {
+                        function renderCredits() {
                 if (!creditsEl) return;
-                creditsEl.textContent = localStorage.getItem('TT_COMPANY_CREDITS') || '0';
+                        creditsEl.textContent = localStorage.getItem('TT_COMPANY_CREDITS') || '0';
             }
 
-            const form = document.getElementById('ttPostJobForm');
-            const list = document.getElementById('ttCompanyPosts');
+                        const form = document.getElementById('ttPostJobForm');
+                        const list = document.getElementById('ttCompanyPosts');
 
-            function renderPosts() {
+                        function renderPosts() {
                 const posts = JSON.parse(localStorage.getItem('TT_POSTS') || '[]');
-                if (!list) return;
-                if (!posts.length) {
-                    list.innerHTML = '<li class="tt-muted">No posts yet.</li>';
-                    return;
+                        if (!list) return;
+                        if (!posts.length) {
+                            list.innerHTML = '<li class="tt-muted">No posts yet.</li>';
+                        return;
                 }
-                list.innerHTML = '';
+                        list.innerHTML = '';
                 posts.slice().reverse().forEach(p => {
                     const li = document.createElement('li');
-                    li.innerHTML = `<div><strong>${p.title}</strong><p class="tt-job-meta">${p.location} · ${p.type}</p></div>`;
+                        li.innerHTML = `<div><strong>${p.title}</strong><p class="tt-job-meta">${p.location} · ${p.type}</p></div>`;
                     list.appendChild(li);
                 });
             }
@@ -353,10 +353,10 @@
         })();
     </script>
     <script src="../../js/main.js"></script>
-            }
+    }
 
-            renderPosts();
-        })();
+    renderPosts();
+    })();
     </script>
 
     <!-- Global scripts -->

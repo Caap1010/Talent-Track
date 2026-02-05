@@ -77,10 +77,25 @@
                     return;
                 }
                 list.innerHTML = '';
-                apps.slice().reverse().forEach(a => {
+                const appsRev = apps.slice().reverse();
+                appsRev.forEach((a, revIdx) => {
+                    const origIdx = apps.length - 1 - revIdx;
                     const li = document.createElement('li');
-                    li.innerHTML = `<div><strong>${a.title}</strong><p class="tt-job-meta">Applied: ${new Date(a.date).toLocaleString()}</p></div>`;
+                    li.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;"><div><strong>${a.title}</strong><p class="tt-job-meta">Applied: ${new Date(a.date).toLocaleString()}</p></div><div><button class="tt-btn tt-btn-ghost tt-btn-sm tt-withdraw" data-idx="${origIdx}">Withdraw</button></div></div>`;
                     list.appendChild(li);
+                });
+
+                // attach withdraw handlers
+                list.querySelectorAll('.tt-withdraw').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const idx = parseInt(btn.getAttribute('data-idx'), 10);
+                        const appsNow = JSON.parse(localStorage.getItem('TT_APPLICATIONS') || '[]');
+                        if (!appsNow[idx]) return (window.ttFlash || alert)('Application not found');
+                        const removed = appsNow.splice(idx, 1)[0];
+                        localStorage.setItem('TT_APPLICATIONS', JSON.stringify(appsNow));
+                        (window.ttFlash || alert)(`Withdrawn application: ${removed.title}`);
+                        renderApps();
+                    });
                 });
             }
             renderApps();

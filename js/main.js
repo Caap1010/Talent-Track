@@ -19,6 +19,38 @@ function applyTheme(theme) {
 const storedTheme = localStorage.getItem(THEME_KEY) || "dark";
 applyTheme(storedTheme);
 
+// Global flash UI for nicer in-page messages; override alert to use it
+document.addEventListener('DOMContentLoaded', () => {
+    if (!document.getElementById('ttFlashContainer')) {
+        const container = document.createElement('div');
+        container.id = 'ttFlashContainer';
+        container.style.position = 'fixed';
+        container.style.right = '16px';
+        container.style.top = '16px';
+        container.style.zIndex = '10000';
+        container.style.display = 'flex';
+        container.style.flexDirection = 'column';
+        container.style.gap = '8px';
+        document.body.appendChild(container);
+
+        window.ttFlash = function (msg, type = 'info', timeout = 3500) {
+            const el = document.createElement('div');
+            el.className = 'tt-flash tt-flash-' + type;
+            el.style.padding = '10px 14px';
+            el.style.borderRadius = '8px';
+            el.style.boxShadow = '0 6px 18px rgba(2,6,23,0.3)';
+            el.style.color = '#fff';
+            el.style.background = type === 'error' ? '#ef4444' : type === 'success' ? '#10b981' : '#0b69d6';
+            el.textContent = msg;
+            container.appendChild(el);
+            setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, timeout);
+        };
+
+        // Replace default alert with ttFlash to avoid modal dialogs
+        window.alert = function (m) { window.ttFlash(String(m)); };
+    }
+});
+
 // Handle toggle click
 const toggleBtn = document.getElementById("darkModeToggle");
 if (toggleBtn) {
@@ -1086,21 +1118,21 @@ document.addEventListener('DOMContentLoaded', () => {
             r === "freelancer" ? `${P}dashboard/freelancer/freelancer.html`
                 : `${P}dashboard/candidate/candidate.html`;
 
-        // Not logged in → show Login + Sign Up
-        if (!role || !name) {
-                nav.innerHTML = `
+    // Not logged in → show Login + Sign Up
+    if (!role || !name) {
+        nav.innerHTML = `
             <a href="${P}index.html">Home</a>
             <a href="${P}jobs.html">Jobs</a>
             <a href="${P}freelance.html">Freelance</a>
             <a href="${P}auth.html">Login</a>
             <a href="${P}register.html" class="tt-btn tt-btn-primary tt-btn-sm">Sign Up</a>
         `;
-                return;
-        }
+        return;
+    }
 
-        // Logged in → show Dashboard + Sign Out + user name
-        const displayName = name.length > 20 ? name.slice(0, 17) + '...' : name;
-        nav.innerHTML = `
+    // Logged in → show Dashboard + Sign Out + user name
+    const displayName = name.length > 20 ? name.slice(0, 17) + '...' : name;
+    nav.innerHTML = `
         <a href="${P}index.html">Home</a>
         <a href="${P}jobs.html">Jobs</a>
         <a href="${P}freelance.html">Freelance</a>
