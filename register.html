@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Correct stylesheet link -->
-    css/styles.css
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body data-theme="dark">
@@ -15,18 +15,18 @@
     <header class="tt-header">
         <div class="tt-header-left">
             <!-- Correct image tag -->
-            img/logo.png
+            <img src="img/logo.png" alt="TalentTrack Logo" style="height: 40px; width: auto;" />
             <span class="tt-brand-name">TALENTTRACK</span>
         </div>
 
         <nav class="tt-nav">
             <!-- These will be replaced dynamically by main-nav.js if you include it.
            Keeping them here as a safe default for when JS hasn't run yet. -->
-            index.htmlHome</a>
-            jobs.htmlJobs</a>
-            freelance.htmlFreelance</a>
-            auth.htmlLogin</a>
-            register.htmlSign Up</a>
+            <a href="index.html">Home</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="freelance.html">Freelance</a>
+            <a href="auth.html">Login</a>
+            <a href="register.html">Sign Up</a>
         </nav>
 
         <button id="darkModeToggle" class="tt-toggle" aria-label="Toggle dark mode">🌙</button>
@@ -112,10 +112,10 @@
     <footer class="tt-footer">
         <div class="tt-footer-left">
             <p>© <span id="year"></span> TalentTrack. All rights reserved.</p>
-            #About</a>
-            #Contact</a>
-            #Privacy</a>
-            #Terms</a>
+            <a href="#About">About</a>
+            <a href="#Contact">Contact</a>
+            <a href="#Privacy">Privacy</a>
+            <a href="#Terms">Terms</a>
         </div>
         <div class="tt-footer-right">
             <span>🔗</span><span>🐦</span><span>📷</span>
@@ -123,9 +123,9 @@
     </footer>
 
     <!-- GLOBAL SCRIPTS -->
-    js/main.js</script>
+    <script src="js/main.js"></script>
     <!-- (Optional) dynamic nav script; keep if you added it -->
-    js/main-nav.js</script>
+    <script src="js/main-nav.js"></script>
 
     <!-- PAGE LOGIC -->
     <script>
